@@ -15,26 +15,29 @@ public class Logging {
         printLog(message, LEVEL_INFO);
     }
 
+    public static void printError(String message){
+        printLog(message, LEVEL_ERROR);
+    }
+
     public static void printLog(String message, int level) {
         if (level == LEVEL_NULL)
             return;
         if (level == LEVEL_ERROR) {
             System.err.println(Time.getFormatTime() + " - [ERROR] - " + message);
-//            CoreEngine.getConsole().getMainField().setForeground(Color.RED);
-//            CoreEngine.getConsole().addConsoleText(Time.getFormatTime() + " - [ERROR] - " + message);
-//            CoreEngine.getConsole().getMainField().setForeground(Color.WHITE);
+            ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [ERROR] - " + message);
         } else if (level == LEVEL_INFO){
             System.out.println(Time.getFormatTime() + " - [INFO] - " + message);
-//            CoreEngine.getConsole().addConsoleText(Time.getFormatTime() + " - [INFO] - " + message);
+            ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [INFO] - " + message);
         } else if(level==LEVEL_DEBUG){
             System.out.println(Time.getFormatTime() + " - [DEBUG] - " + message);
-//            CoreEngine.getConsole().addConsoleText(Time.getFormatTime() + " - [DEBUG] - " + message);
+            ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [DEBUG] - " + message);
         } else if (level == LEVEL_TRACE){
             System.out.println(Time.getFormatTime() + " - [TRACE] - " + message);
-//            CoreEngine.getConsole().addConsoleText(Time.getFormatTime() + " - [TRACE] - " + message);
+            ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [TRACE] - " + message);
         } else {
             System.err.println("THERE WAS AN INVALID TYPE ENTERED.  PRINTING THE MESSAGE ANYWAY BELOW.");
-//            System.out.println(Time.getFormatTime() + " - [UNKNOWN] - " + message);
+            System.out.println(Time.getFormatTime() + " - [UNKNOWN] - " + message);
+            ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [UNKNOWN] - " + message);
         }
     }
 

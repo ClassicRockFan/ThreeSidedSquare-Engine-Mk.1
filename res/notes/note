@@ -1,0 +1,8 @@
+System.exit() codes
+-1: vbo creation
+-2: shader creation
+-3: shader adding creation
+-4: shader adding status
+-5: shader compiling link status
+-6: shader compiling validation status
+-7: adding a uniform

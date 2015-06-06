@@ -8,59 +8,67 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class ConsoleWindow extends JFrame {
+public class ConsoleWindow{
 
-    private JTextArea mainField;
-    private JTextField textField;
-   // private CoreEngine engine;
-    private JScrollPane scrollPane;
-    private String[] commands;
+    private static JTextArea mainField;
+    private static JTextField textField;
+    private static JScrollPane scrollPane;
+    private static String[] commands;
+    private static JFrame frame;
+    private static boolean instantiated = false;
 
-    public ConsoleWindow() {
-        super();
+    public static void instantiate() {
+        if(!instantiated) {
 
-        //this.engine = engine;
-        this.setSize(300, 300);
+            frame = new JFrame();
 
-        getContentPane().setBackground(Color.BLACK);
-        SpringLayout springLayout = new SpringLayout();
-        getContentPane().setLayout(springLayout);
+            //this.engine = engine;
+            frame.setSize(300, 300);
+            frame.setResizable(false);
 
-        mainField = new JTextArea();
-        mainField.setBackground(Color.BLACK);
-        mainField.setForeground(Color.WHITE);
+            frame.getContentPane().setBackground(Color.BLACK);
+            SpringLayout springLayout = new SpringLayout();
+            frame.getContentPane().setLayout(springLayout);
 
-        DefaultCaret caret = (DefaultCaret) mainField.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+            mainField = new JTextArea();
+            mainField.setBackground(Color.BLACK);
+            mainField.setForeground(Color.WHITE);
 
-        JButton btnNewButton = new JButton("Submit");
-        springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -80, SpringLayout.WEST, getContentPane());
-        getContentPane().add(btnNewButton);
-        setupSubmitButon(btnNewButton);
+            DefaultCaret caret = (DefaultCaret) mainField.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-        textField = new JTextField();
-        springLayout.putConstraint(SpringLayout.NORTH, textField, -25, SpringLayout.SOUTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, textField, 0, SpringLayout.SOUTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, textField, 210, SpringLayout.WEST, getContentPane());
-        getContentPane().add(textField);
-        textField.setColumns(10);
+            JButton btnNewButton = new JButton("Submit");
+            springLayout.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.EAST, btnNewButton, -80, SpringLayout.WEST, frame.getContentPane());
+            frame.getContentPane().add(btnNewButton);
+            setupSubmitButon(btnNewButton);
+
+            textField = new JTextField();
+            springLayout.putConstraint(SpringLayout.NORTH, textField, -25, SpringLayout.SOUTH, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.WEST, textField, 0, SpringLayout.WEST, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.SOUTH, textField, 0, SpringLayout.SOUTH, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.EAST, textField, 210, SpringLayout.WEST, frame.getContentPane());
+            frame.getContentPane().add(textField);
+            textField.setColumns(10);
 
 
-        scrollPane = new JScrollPane(mainField);
-        springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, scrollPane);
-        springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 0, SpringLayout.NORTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 237, SpringLayout.NORTH, getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, scrollPane, 284, SpringLayout.WEST, getContentPane());
-        scrollPane.setAutoscrolls(true);
-        getContentPane().add(scrollPane);
+            scrollPane = new JScrollPane(mainField);
+            springLayout.putConstraint(SpringLayout.EAST, btnNewButton, 0, SpringLayout.EAST, scrollPane);
+            springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 0, SpringLayout.NORTH, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.WEST, scrollPane, 0, SpringLayout.WEST, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.SOUTH, scrollPane, 237, SpringLayout.NORTH, frame.getContentPane());
+            springLayout.putConstraint(SpringLayout.EAST, scrollPane, 284, SpringLayout.WEST, frame.getContentPane());
+            scrollPane.setAutoscrolls(true);
+            frame.getContentPane().add(scrollPane);
 
-        setupCommands();
+            setupCommands();
+
+            frame.setVisible(true);
+            instantiated = true;
+        }
     }
 
-    private void setupCommands(){
+    private static void setupCommands(){
         commands = new String[]{
                 "help - displays all available commands",
                 "terminate - stops the game"
@@ -72,7 +80,7 @@ public class ConsoleWindow extends JFrame {
         }
     }
 
-    private void setupSubmitButon(JButton button) {
+    private static void setupSubmitButon(JButton button) {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +94,7 @@ public class ConsoleWindow extends JFrame {
 //                    resumeCaret();
                 else if (text.equals("help")) {
                     addConsoleText("POSSIBLE COMMANDS:");
-                    for(int i = 0; i < commands.length; i++){
+                    for (int i = 0; i < commands.length; i++) {
                         addConsoleText(commands[i]);
                     }
                 }
@@ -96,35 +104,42 @@ public class ConsoleWindow extends JFrame {
 
     }
 
-    private void pauseCaret(){
-        DefaultCaret caret = (DefaultCaret) mainField.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.UPDATE_WHEN_ON_EDT);
-        mainField.setAutoscrolls(false);
-        scrollPane.setAutoscrolls(false);
-    }
-
-    private void resumeCaret(){
-        DefaultCaret caret = (DefaultCaret) mainField.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        mainField.setAutoscrolls(true);
-        scrollPane.setAutoscrolls(true);
-    }
-
-    public void addConsoleText(String message) {
-        mainField.append(message + "\n");
-    }
-
-    public void addConsoleText(String message, int numWhiteSpaces, String message2) {
-        String whiteSpace = "";
-
-        for (int i = 0; i < numWhiteSpaces - 1; i++) {
-            whiteSpace += " ";
+    private static void pauseCaret(){
+        if(instantiated){
+            DefaultCaret caret = (DefaultCaret) mainField.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.UPDATE_WHEN_ON_EDT);
+            mainField.setAutoscrolls(false);
+            scrollPane.setAutoscrolls(false);
         }
-
-        mainField.append(message + whiteSpace + message2 + "\n");
     }
 
-    public JTextArea getMainField() {
+    private static void resumeCaret(){
+        if(instantiated){
+            DefaultCaret caret = (DefaultCaret) mainField.getCaret();
+            caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+            mainField.setAutoscrolls(true);
+            scrollPane.setAutoscrolls(true);
+        }
+    }
+
+    public static void addConsoleText(String message) {
+        if(instantiated)
+            mainField.append(message + "\n");
+    }
+
+    public static void addConsoleText(String message, int numWhiteSpaces, String message2) {
+        if(instantiated) {
+            String whiteSpace = "";
+
+            for (int i = 0; i < numWhiteSpaces - 1; i++) {
+                whiteSpace += " ";
+            }
+
+            mainField.append(message + whiteSpace + message2 + "\n");
+        }
+    }
+
+    public static JTextArea getMainField() {
         return mainField;
     }
 }
