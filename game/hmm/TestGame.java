@@ -1,13 +1,11 @@
 package hmm;
 
 import com.threeSidedSquareStudios.engine.core.Game;
-import com.threeSidedSquareStudios.engine.core.Input;
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
-import com.threeSidedSquareStudios.engine.core.math.Quaternion;
+import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.*;
-import org.lwjgl.input.Keyboard;
 
 public class TestGame extends Game{
 
@@ -15,83 +13,93 @@ public class TestGame extends Game{
     private Shader shader;
     private float temp = 0.0f;
     private Transform transform;
+    private Camera camera;
+    private Texture texture;
 
     @Override
     public void init() {
         super.init();
         Logging.printLog("OpenGL version: " + RenderUtil.getOpenGLVersion());
-        mesh = new Mesh();
+
         shader = new Shader();
 
+        camera = new Camera();
+
         transform = new Transform();
+        Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000f);
+        Transform.setBullshit(camera);
 
-        Vertex[] data = new Vertex[]{new Vertex(new Vector3f(0, 1.7f, 0)),
-                new Vertex(new Vector3f(1, 0, -1)),
-                new Vertex(new Vector3f(1, 0, 1)),
-                new Vertex(new Vector3f(-1, 0, 1)),
-                new Vertex(new Vector3f(-1, 0, -1))};
+        texture = ResourceLoader.loadTexture("default.png");
 
-        int[] indices = new int[]{0, 2, 1,
-                0, 3, 2,
-                0, 4, 3,
-                0, 1, 4,
-                1, 2, 3,
-                1, 3, 4
-        };
+        Vertex[] vertices = new Vertex[] {new Vertex(new Vector3f(-1,-1,0), new Vector2f(0,0)),
+                new Vertex(new Vector3f(0,1,0), new Vector2f(0.5f,0)),
+                new Vertex(new Vector3f(1,-1,0), new Vector2f(1.0f,0)),
+                new Vertex(new Vector3f(0,-1,1), new Vector2f(0.5f,1.0f))};
 
-        mesh.addVertices(data, indices);
+        int[] indices = new int[] {3,1,0,
+                2,1,3,
+                0,1,2,
+                0,2,3};
 
+        mesh = new Mesh();
+        mesh.addVertices(vertices, indices);
+
+        //mesh = ResourceLoader.loadMesh("cube2.obj");
         shader.addVertexShader(ResourceLoader.loadShader("basicShader.vs"));
         shader.addFragmentShader(ResourceLoader.loadShader("basicShader.fs"));
         shader.compileShader();
 
         shader.addUniform("transform");
+        transform.setPosition(0, 0, 5);
+//        shader.addUniform("sampler");
+  //      shader.setUniformi("sampler", 0);
     }
 
     @Override
     public void input(float delta) {
         super.input(delta);
 
-        if(Input.getKeyDown(Keyboard.KEY_UP))
-            Logging.printLog("Up Key Pressed");
-        if(Input.getKeyDown(Keyboard.KEY_DOWN))
-            Logging.printLog("Down Key Pressed");
-        if(Input.getKeyDown(Keyboard.KEY_LEFT))
-            Logging.printLog("Left Key Pressed");
-        if(Input.getKeyDown(Keyboard.KEY_RIGHT))
-            Logging.printLog("Right Key Pressed");
+//        if(Input.getKeyDown(Keyboard.KEY_UP))
+//            Logging.printLog("Up Key Pressed");
+//        if(Input.getKeyDown(Keyboard.KEY_DOWN))
+//            Logging.printLog("Down Key Pressed");
+//        if(Input.getKeyDown(Keyboard.KEY_LEFT))
+//            Logging.printLog("Left Key Pressed");
+//        if(Input.getKeyDown(Keyboard.KEY_RIGHT))
+//            Logging.printLog("Right Key Pressed");
+//
+//        if(Input.getMouseDown(0))
+//            Logging.printLog("Mouse 1 pressed");
+//        if(Input.getMouseDown(1))
+//            Logging.printLog("Mouse 2 pressed");
+//        if(Input.getMouseDown(2))
+//            Logging.printLog("Mouse 3 pressed");
+//        if(Input.getMouseDown(3))
+//            Logging.printLog("Mouse 4 pressed");
+//        if(Input.getMouseDown(4))
+//            Logging.printLog("Mouse 5 pressed");
+//
+//        if(Input.getKeyUp(Keyboard.KEY_UP))
+//            Logging.printLog("Up Key Released");
+//        if(Input.getKeyUp(Keyboard.KEY_DOWN))
+//            Logging.printLog("Up Key Released");
+//        if(Input.getKeyUp(Keyboard.KEY_LEFT))
+//            Logging.printLog("Left Key Released");
+//        if(Input.getKeyUp(Keyboard.KEY_RIGHT))
+//            Logging.printLog("Right Key Released");
+//
+//        if(Input.getMouseUp(0))
+//            Logging.printLog("Mouse 1 Released");
+//        if(Input.getMouseUp(1))
+//            Logging.printLog("Mouse 2 Released");
+//        if(Input.getMouseUp(2))
+//            Logging.printLog("Mouse 3 Released");
+//        if(Input.getMouseUp(3))
+//            Logging.printLog("Mouse 4 Released");
+//        if(Input.getMouseUp(4))
+//            Logging.printLog("Mouse 5 Released");
 
-        if(Input.getMouseDown(0))
-            Logging.printLog("Mouse 1 pressed");
-        if(Input.getMouseDown(1))
-            Logging.printLog("Mouse 2 pressed");
-        if(Input.getMouseDown(2))
-            Logging.printLog("Mouse 3 pressed");
-        if(Input.getMouseDown(3))
-            Logging.printLog("Mouse 4 pressed");
-        if(Input.getMouseDown(4))
-            Logging.printLog("Mouse 5 pressed");
-
-        if(Input.getKeyUp(Keyboard.KEY_UP))
-            Logging.printLog("Up Key Released");
-        if(Input.getKeyUp(Keyboard.KEY_DOWN))
-            Logging.printLog("Up Key Released");
-        if(Input.getKeyUp(Keyboard.KEY_LEFT))
-            Logging.printLog("Left Key Released");
-        if(Input.getKeyUp(Keyboard.KEY_RIGHT))
-            Logging.printLog("Right Key Released");
-
-        if(Input.getMouseUp(0))
-            Logging.printLog("Mouse 1 Released");
-        if(Input.getMouseUp(1))
-            Logging.printLog("Mouse 2 Released");
-        if(Input.getMouseUp(2))
-            Logging.printLog("Mouse 3 Released");
-        if(Input.getMouseUp(3))
-            Logging.printLog("Mouse 4 Released");
-        if(Input.getMouseUp(4))
-            Logging.printLog("Mouse 5 Released");
-
+        camera.input(delta);
     }
 
     @Override
@@ -99,16 +107,19 @@ public class TestGame extends Game{
         super.update(delta);
         temp += delta;
 
-        transform.setPosition((float) Math.sin(temp), 0, 0);
-        transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), Math.abs(Math.sin(temp) * 10)));
-        //transform.setScale(new Vector3f((float) Math.tan(temp), (float) Math.tan(temp), (float) Math.tan(temp)));
+//        transform.setPosition((float) Math.sin(temp), 0, 5);
+//
+//        transform.setRotationVec(new Vector3f(0, (float) Math.sin(temp) * 180, 0));
+        //transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), Math.abs(Math.sin(temp))));
+        //transform.setScale(new Vector3f(0.7f * (float) Math.sin(temp), (float) Math.sin(temp), (float) Math.sin(temp)));
     }
 
     @Override
     public void render() {
         super.render();
         shader.bind();
-        shader.setUniform("transform", transform.getTransformation());
+        texture.bind();
+        shader.setUniform("transform", transform.getProjectedTransformation());
         mesh.draw();
     }
 }

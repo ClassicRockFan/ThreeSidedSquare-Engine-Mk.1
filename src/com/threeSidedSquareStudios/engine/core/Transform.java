@@ -3,12 +3,23 @@ package com.threeSidedSquareStudios.engine.core;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Quaternion;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
+import com.threeSidedSquareStudios.engine.rendering.Camera;
 
 public class Transform {
+
+    private static float zNear;
+    private static float zFar;
+    private static float width;
+    private static float height;
+    private static float fov;
+
+    private static Camera bullshit;
 
     private Vector3f position;
     private Vector3f scale;
     private Quaternion rotation;
+
+    private Vector3f rotationVec;
 
     private Transform parent;
     private Matrix4f parentMatrix;
@@ -21,9 +32,30 @@ public class Transform {
         this.position = new Vector3f(0,0,0);
         this.scale = new Vector3f(1,1,1);
         this.rotation = new Quaternion(0,0,0,1);
+        this.rotationVec = new Vector3f(0, 0, 0);
         this.parent = null;
         this.parentMatrix = new Matrix4f().initIdentity();
     }
+
+    public Matrix4f getTransformation()
+    {
+        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
+        Matrix4f rotationMatrix = new Matrix4f().initRotation(rotation.getX(), rotation.getY(), rotation.getZ());
+        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
+
+        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
+    }
+
+    public Matrix4f getProjectedTransformation()
+    {
+        Matrix4f transformationMatrix = getTransformation();
+        Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
+        Matrix4f cameraRotation = new Matrix4f().initCamera(bullshit.getForward(), bullshit.getUp());
+        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-bullshit.getPos().getX(), -bullshit.getPos().getY(), -bullshit.getPos().getZ());
+
+        return projectionMatrix.mul(cameraRotation.mul(cameraTranslation.mul(transformationMatrix)));
+    }
+
 
     public void rotate(Vector3f axis, float angle) {
         rotation = new Quaternion(axis, angle).mul(rotation).normalized();
@@ -53,13 +85,13 @@ public class Transform {
         return false;
     }
 
-    public Matrix4f getTransformation() {
-        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
-        Matrix4f rotationMatrix = rotation.toRotationMatrix();
-        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
-
-        return getParentMatrix().mul(translationMatrix.mul(rotationMatrix.mul(scaleMatrix)));
-    }
+//    public Matrix4f getTransformation() {
+//        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
+//        Matrix4f rotationMatrix = new Matrix4f().initRotation(rotationVec.getX(), rotationVec.getY(), rotationVec.getZ());
+//        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
+//
+//        return getParentMatrix().mul(translationMatrix.mul(rotationMatrix.mul(scaleMatrix)));
+//    }
 
     private Matrix4f getParentMatrix() {
         if (parent != null && parent.hasChanged())
@@ -122,7 +154,31 @@ public class Transform {
         return rotation;
     }
 
-    public void setRotation(Quaternion rotation) {
-        this.rotation = rotation;
+//    public void setRotation(Quaternion rotation) {
+//        this.rotation = rotation;
+//    }
+
+    public static void setProjection(float fov, float width, float height, float zNear, float zFar){
+        Transform.fov = fov;
+        Transform.width = width;
+        Transform.height = height;
+        Transform.zFar = zFar;
+        Transform.zNear = zNear;
+    }
+
+    public Vector3f getRotationVec() {
+        return rotationVec;
+    }
+
+    public void setRotationVec(Vector3f rotationVec) {
+        this.rotationVec = rotationVec;
+    }
+
+    public static Camera getBullshit() {
+        return bullshit;
+    }
+
+    public static void setBullshit(Camera bullshit) {
+        Transform.bullshit = bullshit;
     }
 }

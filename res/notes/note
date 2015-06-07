@@ -6,3 +6,5 @@ System.exit() codes
 -5: shader compiling link status
 -6: shader compiling validation status
 -7: adding a uniform
+-8: obj loading
+-9: texture loading

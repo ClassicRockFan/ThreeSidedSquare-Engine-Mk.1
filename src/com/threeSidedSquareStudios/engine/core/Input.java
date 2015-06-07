@@ -23,7 +23,7 @@ public class Input {
         }
     }
 
-    private static boolean getKey(int keyCode) {
+    public static boolean getKey(int keyCode) {
         return Keyboard.isKeyDown(keyCode);
     }
 
