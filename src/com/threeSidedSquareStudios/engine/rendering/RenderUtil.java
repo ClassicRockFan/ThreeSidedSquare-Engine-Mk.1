@@ -18,6 +18,10 @@ public class RenderUtil {
             glDisable(GL_TEXTURE_2D);
     }
 
+    public static void unbindTexture(){
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
     public static void setClearColor(float r, float g, float b, float a){
         glClearColor(r, g, b, a);
     }

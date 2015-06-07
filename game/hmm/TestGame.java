@@ -6,22 +6,24 @@ import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.*;
+import com.threeSidedSquareStudios.engine.rendering.shaders.PhongShader;
+import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
 public class TestGame extends Game{
 
     private Mesh mesh;
-    private Shader shader;
     private float temp = 0.0f;
     private Transform transform;
     private Camera camera;
-    private Texture texture;
+    private Material material;
+    private Shader shader;
 
     @Override
     public void init() {
         super.init();
         Logging.printLog("OpenGL version: " + RenderUtil.getOpenGLVersion());
 
-        shader = new Shader();
+        shader = PhongShader.getInstance();
 
         camera = new Camera();
 
@@ -29,7 +31,9 @@ public class TestGame extends Game{
         Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000f);
         Transform.setBullshit(camera);
 
-        texture = ResourceLoader.loadTexture("default.png");
+        material = new Material("default.png", new Vector3f(1, 1, 1));
+
+        //PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
 
         Vertex[] vertices = new Vertex[] {new Vertex(new Vector3f(-1,-1,0), new Vector2f(0,0)),
                 new Vertex(new Vector3f(0,1,0), new Vector2f(0.5f,0)),
@@ -45,11 +49,6 @@ public class TestGame extends Game{
         mesh.addVertices(vertices, indices);
 
         //mesh = ResourceLoader.loadMesh("cube2.obj");
-        shader.addVertexShader(ResourceLoader.loadShader("basicShader.vs"));
-        shader.addFragmentShader(ResourceLoader.loadShader("basicShader.fs"));
-        shader.compileShader();
-
-        shader.addUniform("transform");
         transform.setPosition(0, 0, 5);
 //        shader.addUniform("sampler");
   //      shader.setUniformi("sampler", 0);
@@ -107,9 +106,9 @@ public class TestGame extends Game{
         super.update(delta);
         temp += delta;
 
-//        transform.setPosition((float) Math.sin(temp), 0, 5);
-//
-//        transform.setRotationVec(new Vector3f(0, (float) Math.sin(temp) * 180, 0));
+        transform.setPosition((float) Math.sin(temp), 0, 5);
+
+        transform.setRotationVec(new Vector3f(0, (float) Math.sin(temp) * 180, 0));
         //transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), Math.abs(Math.sin(temp))));
         //transform.setScale(new Vector3f(0.7f * (float) Math.sin(temp), (float) Math.sin(temp), (float) Math.sin(temp)));
     }
@@ -118,8 +117,7 @@ public class TestGame extends Game{
     public void render() {
         super.render();
         shader.bind();
-        texture.bind();
-        shader.setUniform("transform", transform.getProjectedTransformation());
+        shader.updateUniforms(transform.getTransformation(), transform.getProjectedTransformation(), material);
         mesh.draw();
     }
 }

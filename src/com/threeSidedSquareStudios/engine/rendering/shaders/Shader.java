@@ -1,9 +1,10 @@
-package com.threeSidedSquareStudios.engine.rendering;
+package com.threeSidedSquareStudios.engine.rendering.shaders;
 
 import com.threeSidedSquareStudios.engine.core.Util;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
+import com.threeSidedSquareStudios.engine.rendering.Material;
 
 import java.util.HashMap;
 
@@ -36,6 +37,10 @@ public class Shader {
         }
 
         uniforms.put(uniformName, uniformLocation);
+    }
+
+    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){
+
     }
 
     public void addVertexShader(String text){

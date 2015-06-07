@@ -2,79 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14d93371-ed83-49da-821e-041ed9ade401" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/LoadScreen.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/Thumbs.db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/WolfCollection.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/WolfCollection_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/boardMK_1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/boardMK_1_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/brick.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/brick_disp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/brick_normal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/bricks.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/bricks_disp.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/bricks_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/bricks_normal2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/color_5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/default.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/default_disp.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/default_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/drumStickTexture.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/drumStickTexture_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/earthTexture.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/earthTexture_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/stoneBricks.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/stoneBricks1024.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/stoneBricks_disp.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/stoneBricks_disp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/stoneBricks_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/white.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/white_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/wood.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/textures/wood_normal.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Camera.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/MHSMonkey.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Texture.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/TylerMonkey.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/awesomePlane.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/axisIndicator.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/card.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/coffeeCup.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/cube.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/cube2.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/cup.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/donut.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/door.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/drumstick.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/eagleProject.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/gumball.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/monkeyHead.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/monkeyHeadSmooth2.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/mountainousPlane.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/nullMesh.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/plainPlane.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/plane.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/plane3.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/planeHD.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/models/sphere.obj" />
-      <change type="DELETED" beforePath="C:\Users\Tyler\Projects\Code\ThreeSidedSquare-Engine-Mk.1\src\com\threeSidedSquareStudios\engine\rendering\OBJLoad.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Input.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Input.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Matrix4f.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Matrix4f.java" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Projects\Code\ThreeSidedSquare-Engine-Mk.1\src\com\threeSidedSquareStudios\engine\rendering\Shader.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/ResourceLoader.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/ResourceLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/hmm/TestGame.java" afterPath="$PROJECT_DIR$/game/hmm/TestGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Transform.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Transform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Util.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Util.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Vector3f.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Vector3f.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Vertex.java" afterPath="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Vertex.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/basicShader.fs" afterPath="$PROJECT_DIR$/res/shaders/basicShader.fs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/basicShader.vs" afterPath="$PROJECT_DIR$/res/shaders/basicShader.vs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/notes/note" afterPath="$PROJECT_DIR$/res/notes/note" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ThreeSidedSquare-Engine-Mk.1.iws" />
@@ -101,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/game/hmm/TestGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,26 +41,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vertex.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Vertex.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28674698">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#343#344#0" expanded="true" />
-                <element signature="e#392#393#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mesh.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Mesh.java">
+      <file leaf-file-name="phongShader.fs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/phongShader.fs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="34" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+              <caret line="17" column="30" selection-start-line="10" selection-start-column="3" selection-end-line="17" selection-end-column="30" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phongShader.vs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/shaders/phongShader.vs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3686747">
+              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PhongShader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/PhongShader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#612#613#0" expanded="true" />
+                <element signature="e#643#644#0" expanded="true" />
+                <element signature="e#1496#1497#0" expanded="true" />
+                <element signature="e#1531#1532#0" expanded="true" />
+                <element signature="e#1596#1597#0" expanded="true" />
+                <element signature="e#1651#1652#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,7 +115,6 @@
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/CoreEngine.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Time.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/administrative/Logging.java" />
-        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Shader.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/OBJLoad.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Input.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Matrix4f.java" />
@@ -179,12 +124,19 @@
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Vertex.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Util.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Mesh.java" />
-        <option value="$PROJECT_DIR$/res/shaders/basicShader.vs" />
-        <option value="$PROJECT_DIR$/res/shaders/basicShader.fs" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Texture.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/ResourceLoader.java" />
-        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java" />
         <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Camera.java" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Shader.java" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Material.java" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/Shader.java" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/BasicShader.java" />
+        <option value="$PROJECT_DIR$/res/shaders/phongShader.vs" />
+        <option value="$PROJECT_DIR$/res/shaders/basicShader.vs" />
+        <option value="$PROJECT_DIR$/res/shaders/phongShader.fs" />
+        <option value="$PROJECT_DIR$/res/shaders/basicShader.fs" />
+        <option value="$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/PhongShader.java" />
         <option value="$PROJECT_DIR$/game/hmm/TestGame.java" />
       </list>
     </option>
@@ -281,7 +233,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="rendering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThreeSidedSquare-Engine-Mk.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThreeSidedSquare-Engine-Mk.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="engine" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -296,6 +270,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThreeSidedSquare-Engine-Mk.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ThreeSidedSquare-Engine-Mk.1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -820,37 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Transform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="77" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
-          <folding>
-            <element signature="e#2336#2337#0" expanded="true" />
-            <element signature="e#2392#2393#0" expanded="true" />
-            <element signature="e#3769#3770#0" expanded="true" />
-            <element signature="e#3824#3825#0" expanded="true" />
-            <element signature="e#4107#4108#0" expanded="true" />
-            <element signature="e#4136#4137#0" expanded="true" />
-            <element signature="e#4431#4432#0" expanded="true" />
-            <element signature="e#4471#4472#0" expanded="true" />
-            <element signature="e#4577#4578#0" expanded="true" />
-            <element signature="e#4611#4612#0" expanded="true" />
-            <element signature="e#4650#4651#0" expanded="true" />
-            <element signature="e#4709#4710#0" expanded="true" />
-            <element signature="e#4748#4749#0" expanded="true" />
-            <element signature="e#4779#4780#0" expanded="true" />
-            <element signature="e#5186#5187#0" expanded="true" />
-            <element signature="e#5220#5221#0" expanded="true" />
-            <element signature="e#5276#5277#0" expanded="true" />
-            <element signature="e#5322#5323#0" expanded="true" />
-            <element signature="e#5364#5365#0" expanded="true" />
-            <element signature="e#5395#5396#0" expanded="true" />
-            <element signature="e#5450#5451#0" expanded="true" />
-            <element signature="e#5495#5496#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/math/Vector3f.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -867,16 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Mesh.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -885,26 +836,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/basicShader.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Texture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/basicShader.vs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -930,28 +865,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game/hmm/TestGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5903614">
@@ -964,13 +877,134 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28674698">
+        <state vertical-scroll-proportion="0.2853717">
           <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#343#344#0" expanded="true" />
             <element signature="e#392#393#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/Material.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+          <folding>
+            <element signature="e#252#253#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
+            <element signature="e#588#589#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/Shader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="96" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/RenderUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49156627">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/core/Transform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/basicShader.vs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3686747">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/BasicShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.87710845">
+          <caret line="36" column="1" selection-start-line="7" selection-start-column="0" selection-end-line="36" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/basicShader.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/phongShader.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="30" selection-start-line="10" selection-start-column="3" selection-end-line="17" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/threeSidedSquareStudios/engine/rendering/shaders/PhongShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#612#613#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#1496#1497#0" expanded="true" />
+            <element signature="e#1531#1532#0" expanded="true" />
+            <element signature="e#1596#1597#0" expanded="true" />
+            <element signature="e#1651#1652#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/hmm/TestGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/phongShader.vs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3686747">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
