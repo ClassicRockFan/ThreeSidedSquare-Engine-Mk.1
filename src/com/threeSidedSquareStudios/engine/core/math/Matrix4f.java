@@ -248,9 +248,7 @@ public class Matrix4f {
         return this;
     }
 
-
-    public Matrix4f initProjection(float fov, float width, float height, float zNear, float zFar)
-    {
+    public Matrix4f initProjection(float fov, float width, float height, float zNear, float zFar) {
         float ar = width/height;
         float tanHalfFOV = (float)Math.tan(Math.toRadians(fov / 2));
         float zRange = zNear - zFar;
@@ -263,8 +261,7 @@ public class Matrix4f {
         return this;
     }
 
-    public Matrix4f initCamera(Vector3f forward, Vector3f up)
-    {
+    public Matrix4f initCamera(Vector3f forward, Vector3f up) {
         Vector3f f = forward.normalized();
 
         Vector3f r = up.normalized();

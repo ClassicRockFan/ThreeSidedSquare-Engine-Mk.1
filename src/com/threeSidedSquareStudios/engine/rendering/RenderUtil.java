@@ -1,7 +1,7 @@
 package com.threeSidedSquareStudios.engine.rendering;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL30.GL_FRAMEBUFFER_SRGB;
+import static org.lwjgl.opengl.GL32.*;
 
 public class RenderUtil {
 
@@ -35,11 +35,10 @@ public class RenderUtil {
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
 
-        //TODO: Depth clamp for later
+        glEnable(GL_DEPTH_CLAMP);
 
-        glEnable(GL_FRAMEBUFFER_SRGB);
+        //glEnable(GL_FRAMEBUFFER_SRGB);
 
-        //setTextures(true);
     }
 
     public static String getOpenGLVersion()

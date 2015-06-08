@@ -3,9 +3,11 @@ package hmm;
 import com.threeSidedSquareStudios.engine.core.Game;
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
+import com.threeSidedSquareStudios.engine.core.math.Quaternion;
 import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.*;
+import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.PhongShader;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
@@ -33,20 +35,21 @@ public class TestGame extends Game{
 
         material = new Material("default.png", new Vector3f(1, 1, 1));
 
+
+        PhongShader.setDirectionalLight(new DirectionalLight(new Vector3f(1, 1, 1), 0.8f, new Vector3f(1, 1, 1)));
         //PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
 
-        Vertex[] vertices = new Vertex[] {new Vertex(new Vector3f(-1,-1,0), new Vector2f(0,0)),
-                new Vertex(new Vector3f(0,1,0), new Vector2f(0.5f,0)),
-                new Vertex(new Vector3f(1,-1,0), new Vector2f(1.0f,0)),
-                new Vertex(new Vector3f(0,-1,1), new Vector2f(0.5f,1.0f))};
-
-        int[] indices = new int[] {3,1,0,
-                2,1,3,
-                0,1,2,
-                0,2,3};
+        Vertex[] vertices = new Vertex[] { new Vertex( new Vector3f( -1.0f, -1.0f, 0.5773f ), new Vector2f( 0.0f, 0.0f ) ),
+                new Vertex( new Vector3f( 0.0f, -1.0f, -1.15475f ), new Vector2f( 0.5f, 0.0f ) ),
+                new Vertex( new Vector3f( 1.0f, -1.0f, 0.5773f ),new Vector2f( 1.0f, 0 ) ),
+                new Vertex( new Vector3f( 0.0f, 1.0f, 0.0f ), new Vector2f( 0.5f, 1.0f ) ) };
+        int[] indices = new int[] { 0, 3, 1,
+                1, 3, 2,
+                2, 3, 0,
+                1, 2, 0 };
 
         mesh = new Mesh();
-        mesh.addVertices(vertices, indices);
+        mesh.addVertices(vertices, indices, true);
 
         //mesh = ResourceLoader.loadMesh("cube2.obj");
         transform.setPosition(0, 0, 5);
@@ -104,11 +107,15 @@ public class TestGame extends Game{
     @Override
     public void update(float delta) {
         super.update(delta);
-        temp += delta;
+        temp+= delta;
+        float sinTemp = (float)Math.sin(temp);
 
-        transform.setPosition((float) Math.sin(temp), 0, 5);
+        //Logging.printLog("sinTemp = " + sinTemp);
 
-        transform.setRotationVec(new Vector3f(0, (float) Math.sin(temp) * 180, 0));
+        //transform.setPosition(sinTemp, 0, 5);
+        //transform.setRotationVec(new Vector3f(0, sinTemp, 0));
+        transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), sinTemp * 2));
+
         //transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), Math.abs(Math.sin(temp))));
         //transform.setScale(new Vector3f(0.7f * (float) Math.sin(temp), (float) Math.sin(temp), (float) Math.sin(temp)));
     }

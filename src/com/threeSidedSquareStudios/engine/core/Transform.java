@@ -37,14 +37,16 @@ public class Transform {
         this.parentMatrix = new Matrix4f().initIdentity();
     }
 
-    public Matrix4f getTransformation()
-    {
-        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
-        Matrix4f rotationMatrix = new Matrix4f().initRotation(rotation.getX(), rotation.getY(), rotation.getZ());
-        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
-
-        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
-    }
+//    public Matrix4f getTransformation()
+//    {
+//        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
+//        //Matrix4f rotationMatrix = new Matrix4f().initRotation(rotationVec.getX(), rotationVec.getY(), rotationVec.getZ());
+//        Matrix4f rotationMatrix = rotation.toRotationMatrix();
+//
+//        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
+//
+//        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
+//    }
 
     public Matrix4f getProjectedTransformation()
     {
@@ -85,13 +87,13 @@ public class Transform {
         return false;
     }
 
-//    public Matrix4f getTransformation() {
-//        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
-//        Matrix4f rotationMatrix = new Matrix4f().initRotation(rotationVec.getX(), rotationVec.getY(), rotationVec.getZ());
-//        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
-//
-//        return getParentMatrix().mul(translationMatrix.mul(rotationMatrix.mul(scaleMatrix)));
-//    }
+    public Matrix4f getTransformation() {
+        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
+        Matrix4f rotationMatrix = rotation.toRotationMatrix();
+        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
+
+        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
+    }
 
     private Matrix4f getParentMatrix() {
         if (parent != null && parent.hasChanged())
@@ -154,9 +156,9 @@ public class Transform {
         return rotation;
     }
 
-//    public void setRotation(Quaternion rotation) {
-//        this.rotation = rotation;
-//    }
+    public void setRotation(Quaternion rotation) {
+        this.rotation = rotation;
+    }
 
     public static void setProjection(float fov, float width, float height, float zNear, float zFar){
         Transform.fov = fov;

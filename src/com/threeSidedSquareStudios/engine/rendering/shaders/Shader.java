@@ -5,6 +5,8 @@ import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
+import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
+import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 
 import java.util.HashMap;
 
@@ -100,13 +102,26 @@ public class Shader {
     public void setUniformi(String uniformName, int value){
         glUniform1i(uniforms.get(uniformName), value);
     }
+
     public void setUniformf(String uniformName, float value){
         glUniform1f(uniforms.get(uniformName), value);
     }
+
     public void setUniform(String uniformName, Vector3f value){
         glUniform3f(uniforms.get(uniformName), value.getX(), value.getY(), value.getZ());
     }
+
     public void setUniform(String uniformName, Matrix4f value){
         glUniformMatrix4(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
+    }
+
+    public void setUniformBaseLight(String uniformName, BaseLight base){
+        setUniform(uniformName + ".color", base.getColor());
+        setUniformf(uniformName + ".intensity", base.getIntensity());
+    }
+
+    public void setUniformDirectionalLight(String uniformName, DirectionalLight light){
+        setUniformBaseLight(uniformName + ".base", light.getBase());
+        setUniform(uniformName + ".direction", light.getDirection());
     }
 }
