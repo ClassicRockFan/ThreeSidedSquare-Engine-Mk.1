@@ -7,6 +7,7 @@ import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
+import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
 
 import java.util.HashMap;
 
@@ -123,5 +124,14 @@ public class Shader {
     public void setUniformDirectionalLight(String uniformName, DirectionalLight light){
         setUniformBaseLight(uniformName + ".base", light.getBase());
         setUniform(uniformName + ".direction", light.getDirection());
+    }
+
+    public void setUniformPointLight(String uniformName, PointLight light){
+        setUniformBaseLight(uniformName + ".base", light.getBase());
+        setUniform(uniformName + ".position", light.getPosition());
+        setUniformf(uniformName + ".range", light.getRange());
+        setUniformf(uniformName + ".attenuation.constant", light.getAttenuation().getConstant());
+        setUniformf(uniformName + ".attenuation.linear", light.getAttenuation().getLinear());
+        setUniformf(uniformName + ".attenuation.exponent", light.getAttenuation().getExponent());
     }
 }

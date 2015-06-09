@@ -3,11 +3,12 @@ package hmm;
 import com.threeSidedSquareStudios.engine.core.Game;
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
-import com.threeSidedSquareStudios.engine.core.math.Quaternion;
 import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.*;
-import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
+import com.threeSidedSquareStudios.engine.rendering.light.Attenuation;
+import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
+import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.PhongShader;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
@@ -20,6 +21,10 @@ public class TestGame extends Game{
     private Material material;
     private Shader shader;
 
+    PointLight pLight1 = new PointLight(new BaseLight(new Vector3f(1,0.5f,0), 0.8f), new Attenuation(0,0,1), new Vector3f(-2,0,5f));
+    PointLight pLight2 = new PointLight(new BaseLight(new Vector3f(0,0.5f,1), 0.8f), new Attenuation(0,0,1), new Vector3f(2,0,7f));
+
+
     @Override
     public void init() {
         super.init();
@@ -28,31 +33,54 @@ public class TestGame extends Game{
         shader = PhongShader.getInstance();
 
         camera = new Camera();
+        //camera.setPos(new Vector3f(0, 1, 0));
 
         transform = new Transform();
         Transform.setProjection(70f, Window.getWidth(), Window.getHeight(), 0.1f, 1000f);
         Transform.setBullshit(camera);
+        transform.setPosition(0, -1, 5);
 
-        material = new Material("default.png", new Vector3f(1, 1, 1));
 
 
-        PhongShader.setDirectionalLight(new DirectionalLight(new Vector3f(1, 1, 1), 0.8f, new Vector3f(1, 1, 1)));
+        material = new Material("default.png", new Vector3f(1, 1, 1), 1, 8);
+
+
+        //PhongShader.setDirectionalLight(new DirectionalLight(new Vector3f(1, 1, 1), 0.8f, new Vector3f(1, 1, 1)));
+        PhongShader.addPointLight(new PointLight(new Vector3f(1, 0.5f, 0), 0.8f, new Attenuation(0f, 0f, 1f), new Vector3f(-2, 0.5f, 5f)));
+        PhongShader.addPointLight(new PointLight(new Vector3f(0, 0.5f, 1), 0.8f, new Attenuation(0f, 0f, 1f), new Vector3f(2, 0.5f, 7)));
+
+        PhongShader.addPointLight(pLight1);
+        PhongShader.addPointLight(pLight2);
+        PhongShader.addPointLight(pLight1);
+        PhongShader.addPointLight(pLight2);
         //PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
 
-        Vertex[] vertices = new Vertex[] { new Vertex( new Vector3f( -1.0f, -1.0f, 0.5773f ), new Vector2f( 0.0f, 0.0f ) ),
-                new Vertex( new Vector3f( 0.0f, -1.0f, -1.15475f ), new Vector2f( 0.5f, 0.0f ) ),
-                new Vertex( new Vector3f( 1.0f, -1.0f, 0.5773f ),new Vector2f( 1.0f, 0 ) ),
-                new Vertex( new Vector3f( 0.0f, 1.0f, 0.0f ), new Vector2f( 0.5f, 1.0f ) ) };
-        int[] indices = new int[] { 0, 3, 1,
-                1, 3, 2,
-                2, 3, 0,
-                1, 2, 0 };
+//        //Pyramid
+//        Vertex[] vertices = new Vertex[] { new Vertex( new Vector3f( -1.0f, -1.0f, 0.5773f ), new Vector2f( 0.0f, 0.0f ) ),
+//                new Vertex( new Vector3f( 0.0f, -1.0f, -1.15475f ), new Vector2f( 0.5f, 0.0f ) ),
+//                new Vertex( new Vector3f( 1.0f, -1.0f, 0.5773f ),new Vector2f( 1.0f, 0 ) ),
+//                new Vertex( new Vector3f( 0.0f, 1.0f, 0.0f ), new Vector2f( 0.5f, 1.0f ) ) };
+//        int[] indices = new int[] { 0, 3, 1,
+//                1, 3, 2,
+//                2, 3, 0,
+//                1, 2, 0 };
+
+        //Plane
+        float fieldDepth = 10.0f;
+        float fieldWidth = 10.0f;
+
+        Vertex[] vertices = new Vertex[] { 	new Vertex( new Vector3f(-fieldWidth, 0.0f, -fieldDepth), new Vector2f(0.0f, 0.0f)),
+                new Vertex( new Vector3f(-fieldWidth, 0.0f, fieldDepth * 3), new Vector2f(0.0f, 1.0f)),
+                new Vertex( new Vector3f(fieldWidth * 3, 0.0f, -fieldDepth), new Vector2f(1.0f, 0.0f)),
+                new Vertex( new Vector3f(fieldWidth * 3, 0.0f, fieldDepth * 3), new Vector2f(1.0f, 1.0f))};
+
+        int indices[] = { 0, 1, 2,
+                2, 1, 3};
 
         mesh = new Mesh();
         mesh.addVertices(vertices, indices, true);
 
         //mesh = ResourceLoader.loadMesh("cube2.obj");
-        transform.setPosition(0, 0, 5);
 //        shader.addUniform("sampler");
   //      shader.setUniformi("sampler", 0);
     }
@@ -110,11 +138,14 @@ public class TestGame extends Game{
         temp+= delta;
         float sinTemp = (float)Math.sin(temp);
 
+        pLight1.setPosition(new Vector3f(3, 0, 8.0f * (float) (Math.sin(temp) + 1.0 / 2.0) + 10));
+        pLight2.setPosition(new Vector3f(7,0,8.0f * (float)(Math.cos(temp) + 1.0/2.0) + 10));
+
         //Logging.printLog("sinTemp = " + sinTemp);
 
         //transform.setPosition(sinTemp, 0, 5);
         //transform.setRotationVec(new Vector3f(0, sinTemp, 0));
-        transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), sinTemp * 2));
+        //transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), sinTemp * 2));
 
         //transform.setRotation(new Quaternion(new Vector3f(0, 1, 0), Math.abs(Math.sin(temp))));
         //transform.setScale(new Vector3f(0.7f * (float) Math.sin(temp), (float) Math.sin(temp), (float) Math.sin(temp)));
