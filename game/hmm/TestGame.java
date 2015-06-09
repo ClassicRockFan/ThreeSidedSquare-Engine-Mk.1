@@ -1,5 +1,6 @@
 package hmm;
 
+import com.threeSidedSquareStudios.engine.core.CoreEngine;
 import com.threeSidedSquareStudios.engine.core.Game;
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
@@ -24,8 +25,11 @@ public class TestGame extends Game{
     SpotLight sLight1 = new SpotLight(new PointLight(new BaseLight(new Vector3f(1f,1f,1f), 0.001f), new Attenuation(0,0,0.01f), new Vector3f(-2,0,5f), 60f), new Vector3f(1,1,1), 0.7f);
 
     @Override
-    public void init() {
-        super.init();
+    public void init(CoreEngine engine) {
+        super.init(engine);
+
+        engine.createWindowInitGraphics(Main.TITLE);
+
         Logging.printLog("OpenGL version: " + RenderUtil.getOpenGLVersion());
 
         shader = PhongShader.getInstance();
@@ -43,16 +47,14 @@ public class TestGame extends Game{
         material = new Material("default.png", new Vector3f(1, 1, 1), 1, 8);
 
 
-        PhongShader.setDirectionalLight(new DirectionalLight(new Vector3f(1, 1, 1), 0.8f, new Vector3f(1, 1, 1)));
+        //PhongShader.setDirectionalLight(new DirectionalLight(new Vector3f(1, 1, 1), 0.8f, new Vector3f(1, 1, 1)));
         PhongShader.addPointLight(new PointLight(new Vector3f(1, 0.5f, 0), 0.8f, new Attenuation(0f, 0f, 1f), new Vector3f(-2, 0.5f, 5f), 0.0f));
         PhongShader.addPointLight(new PointLight(new Vector3f(0, 0.5f, 1), 0.8f, new Attenuation(0f, 0f, 1f), new Vector3f(2, 0.5f, 7), 0.0f));
 
         PhongShader.addPointLight(pLight1);
         PhongShader.addPointLight(pLight2);
-        PhongShader.addPointLight(pLight1);
-        PhongShader.addPointLight(pLight2);
 
-        PhongShader.addSpotLight(sLight1);
+        //PhongShader.addSpotLight(sLight1);
         //PhongShader.setAmbientLight(new Vector3f(0.1f, 0.1f, 0.1f));
 
 //        //Pyramid

@@ -12,6 +12,8 @@ import static org.lwjgl.opengl.GL30.*;
 
 public class Window{
 
+
+
     public static void createWindow(int width, int height, String title) {
         Display.setTitle(title);
         try {

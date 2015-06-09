@@ -26,8 +26,7 @@ public class RenderUtil {
         glClearColor(r, g, b, a);
     }
 
-    public static void initGraphics()
-    {
+    public static void initGraphics() {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         glFrontFace(GL_CW);
@@ -36,9 +35,6 @@ public class RenderUtil {
         glEnable(GL_DEPTH_TEST);
 
         glEnable(GL_DEPTH_CLAMP);
-
-        //glEnable(GL_FRAMEBUFFER_SRGB);
-
     }
 
     public static String getOpenGLVersion()

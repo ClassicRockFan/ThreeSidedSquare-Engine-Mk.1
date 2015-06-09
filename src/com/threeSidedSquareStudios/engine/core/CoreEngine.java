@@ -6,20 +6,28 @@ import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
 import com.threeSidedSquareStudios.engine.rendering.RenderingEngine;
 import com.threeSidedSquareStudios.engine.rendering.Window;
-import hmm.Main;
 
 public class CoreEngine {
 
     private boolean running = false;
     private Game game;
     private double frameTime;
+    private int width;
+    private int height;
 
     private RenderingEngine renderingEngine;
 
-    public CoreEngine(Game game, double frameCap) {
+    public CoreEngine(int width, int heght, Game game, double frameCap) {
         this.game = game;
         this.frameTime = 1 / frameCap;
         this.renderingEngine = new RenderingEngine(this);
+        this.width = width;
+        this.height = heght;
+    }
+
+    public void createWindowInitGraphics(String title){
+        Window.createWindow(width, height, title);
+        renderingEngine.finalizeSetup();
     }
 
     public boolean start(){
@@ -48,13 +56,11 @@ public class CoreEngine {
 
         Logging.printLog("Creating Game Window");
 
-        Window.createWindow(Main.WIDTH, Main.HEIGHT, Main.TITLE);
-        RenderUtil.initGraphics();
 
         int frames = 0;
         double frameCounter = 0;
 
-        game.init();
+        game.init(this);
 
         double lastTime = Time.getTime();
         double unprocessedTime = 0;
