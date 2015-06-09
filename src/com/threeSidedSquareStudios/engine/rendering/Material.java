@@ -9,16 +9,16 @@ public class Material {
     private float specularIntesity;
     private float specularExponent;
 
-    public Material(String texture, Vector3f color){
-        this(ResourceLoader.loadTexture(texture), color);
+    public Material(String path, Vector3f color){
+        this(new Texture(path), color);
     }
 
     public Material(Texture texture, Vector3f color) {
-        this(texture, color, 2f, 32f);
+        this(texture, color, 1f, 8f);
     }
 
     public Material(String path, Vector3f color, float specularIntesity, float specularExponent) {
-        this(ResourceLoader.loadTexture(path), color, specularIntesity, specularExponent);
+        this(new Texture(path), color, specularIntesity, specularExponent);
     }
 
     public Material(Texture texture, Vector3f color, float specularIntesity, float specularExponent) {

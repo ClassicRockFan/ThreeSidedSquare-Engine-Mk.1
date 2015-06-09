@@ -11,20 +11,23 @@ public class PointLight {
     private Vector3f position;
     private float range;
 
-    public PointLight(Vector3f color, float intensity, Attenuation attenuation, Vector3f position){
-        this(new BaseLight(color, intensity), attenuation, position);
+    public PointLight(Vector3f color, float intensity, Attenuation attenuation, Vector3f position, float range){
+        this(new BaseLight(color, intensity), attenuation, position, range);
     }
 
-    public PointLight(BaseLight base, Attenuation attenuation, Vector3f position) {
+    public PointLight(BaseLight base, Attenuation attenuation, Vector3f position, float range) {
         this.attenuation = attenuation;
         this.base = base;
         this.position = position;
 
-        float a = attenuation.getExponent();
-        float b = attenuation.getLinear();
-        float c = attenuation.getConstant() - COLOR_DEPTH * base.getIntensity() * base.getColor().maxVal();
+        if(range == 0.0f) {
+            float a = attenuation.getExponent();
+            float b = attenuation.getLinear();
+            float c = attenuation.getConstant() - COLOR_DEPTH * base.getIntensity() * base.getColor().maxVal();
 
-        this.range = (float) ((-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a);
+            this.range = (float) ((-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a);
+        }else
+            this.range = range;
     }
 
     public Attenuation getAttenuation() {

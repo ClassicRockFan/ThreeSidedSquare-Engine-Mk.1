@@ -8,3 +8,5 @@ System.exit() codes
 -7: adding a uniform
 -8: obj loading
 -9: texture loading
+-10: pointLight adding - commented in code
+-11: spotLight adding - commented in code

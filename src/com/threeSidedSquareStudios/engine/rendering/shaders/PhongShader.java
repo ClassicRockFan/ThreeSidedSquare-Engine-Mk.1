@@ -6,9 +6,9 @@ import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
-import com.threeSidedSquareStudios.engine.rendering.ResourceLoader;
 import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
+import com.threeSidedSquareStudios.engine.rendering.light.SpotLight;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,13 @@ public class PhongShader extends Shader{
     private static final PhongShader instance = new PhongShader();
 
     private static final int MAX_POINT_LIGHTS = 4;
+    private static final int MAX_SPOT_LIGHTS = 4;
 
     private static Vector3f ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
     private static DirectionalLight directionalLight = new DirectionalLight(new Vector3f(1, 1, 1), 0.0f, new Vector3f(0, 0, 0));
     private static ArrayList<PointLight> pointLights = new ArrayList<>();
+    private static ArrayList<SpotLight> spotLights = new ArrayList<>();
+
 
     public static PhongShader getInstance() {
         return instance;
@@ -29,8 +32,8 @@ public class PhongShader extends Shader{
     private PhongShader() {
         super();
 
-        addFragmentShader(ResourceLoader.loadShader("phongShader.fs"));
-        addVertexShader(ResourceLoader.loadShader("phongShader.vs"));
+        addFragmentShaderFromFile("phongShader.fs");
+        addVertexShaderFromFile("phongShader.vs");
         compileShader();
 
         addUniform("transform");
@@ -53,6 +56,18 @@ public class PhongShader extends Shader{
             addUniform("pointLights[" + i + "].attenuation.exponent");
             addUniform("pointLights[" + i + "].range");
         }
+
+        for(int i = 0; i < MAX_SPOT_LIGHTS; i++) {
+            addUniform("spotLights[" + i + "].pointLight.base.color");
+            addUniform("spotLights[" + i + "].pointLight.base.intensity");
+            addUniform("spotLights[" + i + "].pointLight.position");
+            addUniform("spotLights[" + i + "].pointLight.attenuation.linear");
+            addUniform("spotLights[" + i + "].pointLight.attenuation.constant");
+            addUniform("spotLights[" + i + "].pointLight.attenuation.exponent");
+            addUniform("spotLights[" + i + "].pointLight.range");
+            addUniform("spotLights[" + i + "].direction");
+            addUniform("spotLights[" + i + "].cutoff");
+        }
     }
 
     @Override
@@ -71,10 +86,14 @@ public class PhongShader extends Shader{
         setUniformf("specularIntensity", material.getSpecularIntesity());
         setUniform("eyePos", Transform.getBullshit().getPos());
 
-        //if(pointLights[0] != null)
-            for (int i = 0; i < pointLights.size(); i++){
+        if(pointLights.size() > 0)
+            for (int i = 0; i < pointLights.size(); i++)
                 setUniformPointLight("pointLights[" + i + "]", pointLights.get(i));
-            }
+
+        if(spotLights.size() > 0)
+            for (int i = 0; i < spotLights.size(); i++)
+                setUniformSpotLight("spotLights[" + i + "]", spotLights.get(i));
+
     }
 
     public static Vector3f getAmbientLight() {
@@ -95,17 +114,28 @@ public class PhongShader extends Shader{
 
     public static void addPointLight(PointLight light){
         int location = pointLights.size();
-        Logging.printLog("location = " + location);
-        if(location == 0)
-            location += 1;
-
-        Logging.printLog("location = " + location);
 
         if(location < MAX_POINT_LIGHTS)
             pointLights.add(light);
         else{
-            Logging.printError("You are already at the maximum number of point lights!  Trying to add the " + pointLights.size() + "th PointLight");
-            //new Exception().printStackTrace();
+            Logging.printError("You are already at the maximum number of point lights!  The maximum allowed is " + MAX_POINT_LIGHTS + ".     ");
+//            new Exception().printStackTrace();
+//            System.exit(-10);
         }
+
+        Logging.printLog("New size of pointLights = " + pointLights.size());
+    }
+    public static void addSpotLight(SpotLight light){
+        int location = spotLights.size();
+
+        if(location < MAX_SPOT_LIGHTS)
+            spotLights.add(light);
+        else{
+            Logging.printError("You are already at the maximum number of spot lights!  The maximum allowed is " + MAX_SPOT_LIGHTS + ".     ");
+//            new Exception().printStackTrace();
+//            System.exit(-11);
+        }
+
+        Logging.printLog("New size of spotLights = " + spotLights.size());
     }
 }

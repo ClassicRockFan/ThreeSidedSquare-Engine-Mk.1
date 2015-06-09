@@ -3,7 +3,6 @@ package com.threeSidedSquareStudios.engine.rendering.shaders;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
-import com.threeSidedSquareStudios.engine.rendering.ResourceLoader;
 
 public class BasicShader extends Shader{
 
@@ -16,8 +15,8 @@ public class BasicShader extends Shader{
     private BasicShader() {
         super();
 
-        addFragmentShader(ResourceLoader.loadShader("basicShader.fs"));
-        addVertexShader(ResourceLoader.loadShader("basicShader.vs"));
+        addFragmentShaderFromFile("basicShader.fs");
+        addVertexShaderFromFile("basicShader.vs");
         compileShader();
 
         addUniform("transform");

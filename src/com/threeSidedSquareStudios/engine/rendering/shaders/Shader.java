@@ -8,7 +8,10 @@ import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
+import com.threeSidedSquareStudios.engine.rendering.light.SpotLight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -45,6 +48,19 @@ public class Shader {
     public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){
 
     }
+
+    public void addVertexShaderFromFile(String path){
+        addProgram(loadShader(path), GL_VERTEX_SHADER);
+    }
+
+    public void addGeometryShaderFromFile(String path){
+        addProgram(loadShader(path), GL_GEOMETRY_SHADER);
+    }
+
+    public void addFragmentShaderFromFile(String path){
+        addProgram(loadShader(path), GL_FRAGMENT_SHADER);
+    }
+
 
     public void addVertexShader(String text){
         addProgram(text, GL_VERTEX_SHADER);
@@ -96,6 +112,26 @@ public class Shader {
         }
     }
 
+    private static String loadShader(String fileName){
+        StringBuilder shaderSource = new StringBuilder();
+        BufferedReader shaderReader;
+
+        try{
+            shaderReader = new BufferedReader(new FileReader("./res/shaders/" + fileName));
+            String line;
+            while((line = shaderReader.readLine()) != null)
+                shaderSource.append(line).append("\n");
+
+            shaderReader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+
+        return shaderSource.toString();
+    }
+
     public void bind(){
         glUseProgram(program);
     }
@@ -133,5 +169,11 @@ public class Shader {
         setUniformf(uniformName + ".attenuation.constant", light.getAttenuation().getConstant());
         setUniformf(uniformName + ".attenuation.linear", light.getAttenuation().getLinear());
         setUniformf(uniformName + ".attenuation.exponent", light.getAttenuation().getExponent());
+    }
+
+    public void setUniformSpotLight(String uniformName, SpotLight light){
+        setUniformPointLight(uniformName + ".pointLight", light.getPointLight());
+        setUniform(uniformName + ".direction", light.getDirection());
+        setUniformf(uniformName + ".cutoff", light.getCutoff());
     }
 }
