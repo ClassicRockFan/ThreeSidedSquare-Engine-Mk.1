@@ -1,6 +1,7 @@
 package com.threeSidedSquareStudios.engine.rendering;
 
 import com.threeSidedSquareStudios.engine.core.Input;
+import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import org.lwjgl.input.Keyboard;
@@ -12,25 +13,26 @@ public class Camera {
     private Vector3f pos;
     private Vector3f forward;
     private Vector3f up;
+
+    private Matrix4f projectionMatrix;
+
     private boolean mouseLocked;
     private float sensitivity;
 
-    public Camera()
-    {
-        this(new Vector3f(0,0,0), new Vector3f(0,0,1), new Vector3f(0,1,0));
+    public Camera(float fov, float zNear, float zFar){
+        this(fov, (float)Window.getWidth()/(float)Window.getHeight(), zNear, zFar);
     }
 
-    public Camera(Vector3f pos, Vector3f forward, Vector3f up)
-    {
-        this.pos = pos;
-        this.forward = forward.normalized();
-        this.up = up.normalized();
+    public Camera(float fov, float aspect, float zNear, float zFar) {
+        this.pos = new Vector3f(0,0,0);
+        this.forward = new Vector3f(0, 0, 1).normalized();
+        this.up = new Vector3f(0, 1, 0).normalized();
+        this.projectionMatrix = new Matrix4f().initPerspective(fov, aspect, zNear, zFar);
         this.mouseLocked = false;
         this.sensitivity = 50.0f;
     }
 
-    public void input(float delta)
-    {
+    public void input(float delta) {
         float movAmt = (10 * delta);
         float rotAmt = (100 * delta);
 
@@ -147,5 +149,12 @@ public class Camera {
     public void setUp(Vector3f up)
     {
         this.up = up;
+    }
+
+    public Matrix4f getProjectionMatrix() {
+        Matrix4f cameraRotation = new Matrix4f().initRotation(getForward(), getUp());
+        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-getPos().getX(), getPos().getY(), -getPos().getZ());
+
+        return projectionMatrix.mul(cameraRotation.mul(cameraTranslation));
     }
 }

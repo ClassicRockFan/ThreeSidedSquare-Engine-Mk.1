@@ -1,10 +1,12 @@
 package com.threeSidedSquareStudios.engine.rendering.shaders;
 
+import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.Util;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
+import com.threeSidedSquareStudios.engine.rendering.RenderingEngine;
 import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
@@ -21,6 +23,8 @@ public class Shader {
 
     private int program;
     private HashMap<String, Integer> uniforms;
+
+    private RenderingEngine renderingEngine;
 
     public Shader(){
         this.program = glCreateProgram();
@@ -45,7 +49,7 @@ public class Shader {
         uniforms.put(uniformName, uniformLocation);
     }
 
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material){
+    public void updateUniforms(Transform transform, Material material){
 
     }
 
@@ -175,5 +179,13 @@ public class Shader {
         setUniformPointLight(uniformName + ".pointLight", light.getPointLight());
         setUniform(uniformName + ".direction", light.getDirection());
         setUniformf(uniformName + ".cutoff", light.getCutoff());
+    }
+
+    public RenderingEngine getRenderingEngine() {
+        return renderingEngine;
+    }
+
+    public void setRenderingEngine(RenderingEngine renderingEngine) {
+        this.renderingEngine = renderingEngine;
     }
 }

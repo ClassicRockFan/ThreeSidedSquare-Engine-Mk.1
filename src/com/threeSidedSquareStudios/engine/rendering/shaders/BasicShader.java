@@ -1,8 +1,8 @@
 package com.threeSidedSquareStudios.engine.rendering.shaders;
 
+import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
-import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
 
 public class BasicShader extends Shader{
 
@@ -20,17 +20,17 @@ public class BasicShader extends Shader{
         compileShader();
 
         addUniform("transform");
-        addUniform("color");
+        addUniform("baseColor");
     }
 
     @Override
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
-        super.updateUniforms(worldMatrix, projectedMatrix, material);
-        if(material.getTexture() != null)
-            material.getTexture().bind();
-        else
-            RenderUtil.unbindTexture();
+    public void updateUniforms(Transform transform, Material material) {
+        Matrix4f worldMatrix = transform.getTransformation();
+        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getProjectionMatrix().mul(worldMatrix);
+
+        super.updateUniforms(transform, material);
+        material.getTexture().bind();
         setUniform("transform", projectedMatrix);
-        setUniform("color", material.getColor());
+        setUniform("baseColor", material.getColor());
     }
 }

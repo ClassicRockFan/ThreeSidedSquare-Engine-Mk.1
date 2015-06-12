@@ -1,5 +1,9 @@
-package com.threeSidedSquareStudios.engine.core;
+package com.threeSidedSquareStudios.engine.object;
 
+
+import com.threeSidedSquareStudios.engine.core.Transform;
+import com.threeSidedSquareStudios.engine.object.components.GameComponent;
+import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,7 @@ public class GameObject {
 
     public GameObject addComponent(GameComponent component){
         components.add(component);
+        component.setParent(this);
         return this;
     }
 
@@ -40,11 +45,11 @@ public class GameObject {
             component.update(delta);
     }
 
-    public void render(CoreEngine engine){
+    public void render(Shader shader){
         for(GameObject child : children)
-            child.render(engine);
+            child.render(shader);
         for(GameComponent component : components)
-            component.render(engine);
+            component.render(shader);
     }
 
     public ArrayList<GameObject> getChildren() {

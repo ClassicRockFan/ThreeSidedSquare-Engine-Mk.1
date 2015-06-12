@@ -3,7 +3,6 @@ package com.threeSidedSquareStudios.engine.core;
 
 import com.threeSidedSquareStudios.engine.core.administrative.ConsoleWindow;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
-import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
 import com.threeSidedSquareStudios.engine.rendering.RenderingEngine;
 import com.threeSidedSquareStudios.engine.rendering.Window;
 
@@ -84,10 +83,11 @@ public class CoreEngine {
                     stop();
                 }
 
+                float deltaTime = (float) frameTime;
 
-
-                game.input((float)frameTime);
-                game.update((float) frameTime);
+                game.input(deltaTime);
+                renderingEngine.input(deltaTime);
+                game.update(deltaTime);
 
                 Input.update();
 
@@ -105,8 +105,9 @@ public class CoreEngine {
             }
 
             if (render) {
-                Window.bindAsRenderTarget();
-                RenderUtil.clearScreen();
+//                Window.bindAsRenderTarget();
+//                RenderUtil.clearScreen();
+//                game.render();
                 game.render();
                 Window.render();
                 frames++;

@@ -7,13 +7,7 @@ import com.threeSidedSquareStudios.engine.rendering.Camera;
 
 public class Transform {
 
-    private static float zNear;
-    private static float zFar;
-    private static float width;
-    private static float height;
-    private static float fov;
-
-    private static Camera bullshit;
+    private Camera bullshit;
 
     private Vector3f position;
     private Vector3f scale;
@@ -47,17 +41,6 @@ public class Transform {
 //
 //        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
 //    }
-
-    public Matrix4f getProjectedTransformation()
-    {
-        Matrix4f transformationMatrix = getTransformation();
-        Matrix4f projectionMatrix = new Matrix4f().initProjection(fov, width, height, zNear, zFar);
-        Matrix4f cameraRotation = new Matrix4f().initCamera(bullshit.getForward(), bullshit.getUp());
-        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-bullshit.getPos().getX(), -bullshit.getPos().getY(), -bullshit.getPos().getZ());
-
-        return projectionMatrix.mul(cameraRotation.mul(cameraTranslation.mul(transformationMatrix)));
-    }
-
 
     public void rotate(Vector3f axis, float angle) {
         rotation = new Quaternion(axis, angle).mul(rotation).normalized();
@@ -160,14 +143,6 @@ public class Transform {
         this.rotation = rotation;
     }
 
-    public static void setProjection(float fov, float width, float height, float zNear, float zFar){
-        Transform.fov = fov;
-        Transform.width = width;
-        Transform.height = height;
-        Transform.zFar = zFar;
-        Transform.zNear = zNear;
-    }
-
     public Vector3f getRotationVec() {
         return rotationVec;
     }
@@ -176,11 +151,4 @@ public class Transform {
         this.rotationVec = rotationVec;
     }
 
-    public static Camera getBullshit() {
-        return bullshit;
-    }
-
-    public static void setBullshit(Camera bullshit) {
-        Transform.bullshit = bullshit;
-    }
 }

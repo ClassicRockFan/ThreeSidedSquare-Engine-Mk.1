@@ -10,10 +10,9 @@ public class Vector2f {
         this.setY(y);
     }
 
-    public float max() {
+    public float getLargestComponent() {
         return Math.max(x, y);
     }
-
 
     public Vector2f lerp(Vector2f dest, float lerpFactor) {
         return dest.sub(this).mult(lerpFactor).add(this);

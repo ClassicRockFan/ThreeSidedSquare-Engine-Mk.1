@@ -5,7 +5,6 @@ import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
-import com.threeSidedSquareStudios.engine.rendering.RenderUtil;
 import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
 import com.threeSidedSquareStudios.engine.rendering.light.SpotLight;
@@ -71,12 +70,14 @@ public class PhongShader extends Shader{
     }
 
     @Override
-    public void updateUniforms(Matrix4f worldMatrix, Matrix4f projectedMatrix, Material material) {
-        super.updateUniforms(worldMatrix, projectedMatrix, material);
-        if(material.getTexture() != null)
-            material.getTexture().bind();
-        else
-            RenderUtil.unbindTexture();
+    public void updateUniforms(Transform transform, Material material) {
+        super.updateUniforms(transform, material);
+
+        Matrix4f worldMatrix = transform.getTransformation();
+        Matrix4f projectedMatrix = getRenderingEngine().getMainCamera().getProjectionMatrix().mul(worldMatrix);
+
+
+        material.getTexture().bind();
         setUniform("transform", worldMatrix);
         setUniform("transformProjected", projectedMatrix);
         setUniform("baseColor", material.getColor());
@@ -84,7 +85,7 @@ public class PhongShader extends Shader{
         setUniformDirectionalLight("directionalLight", directionalLight);
         setUniformf("specularPower", material.getSpecularExponent());
         setUniformf("specularIntensity", material.getSpecularIntesity());
-        setUniform("eyePos", Transform.getBullshit().getPos());
+        setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
 
         if(pointLights.size() > 0)
             for (int i = 0; i < pointLights.size(); i++)
