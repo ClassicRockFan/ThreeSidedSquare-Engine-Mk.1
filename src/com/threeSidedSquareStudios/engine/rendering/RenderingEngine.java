@@ -24,6 +24,7 @@ public class RenderingEngine {
     private DirectionalLight directionalLight;
     private DirectionalLight directionalLight2;
     private PointLight pointLight;
+    private PointLight[] pointLightList;
     private SpotLight spotLight;
 
     public RenderingEngine(CoreEngine engine, boolean initGraphics) {
@@ -56,25 +57,30 @@ public class RenderingEngine {
         glDepthMask(false);
         glDepthFunc(GL_EQUAL);
 
-        for(GameObject object : objects)
-            object.render(directional);
+//        for(GameObject object : objects)
+//            object.render(directional);
+//
+//        DirectionalLight temp = directionalLight;
+//        directionalLight = directionalLight2;
+//        directionalLight2 = temp;
+//
+//        for(GameObject object : objects)
+//            object.render(directional);
+//
+//        temp = directionalLight;
+//        directionalLight = directionalLight2;
+//        directionalLight2 = temp;
 
-        DirectionalLight temp = directionalLight;
-        directionalLight = directionalLight2;
-        directionalLight2 = temp;
+        for(int i = 0; i < pointLightList.length; i++)
+        {
+            pointLight = pointLightList[i];
+            for(GameObject object : objects)
+                object.render(point);
+        }
 
-        for(GameObject object : objects)
-            object.render(directional);
 
-        temp = directionalLight;
-        directionalLight = directionalLight2;
-        directionalLight2 = temp;
-
-        for(GameObject object : objects)
-            object.render(point);
-
-        for(GameObject object : objects)
-            object.render(spot);
+//        for(GameObject object : objects)
+//            object.render(spot);
 
         glDepthFunc(GL_LESS);
         glDepthMask(true);
@@ -94,10 +100,33 @@ public class RenderingEngine {
         glEnable(GL_TEXTURE_2D);
 
         this.mainCamera = new Camera((float)Math.toRadians(70f), 0.1f, 1000f);
-        this.ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
+        this.ambientLight = new Vector3f(0.0f, 0.0f, 0.0f);
         this.directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1));
         this.directionalLight2 = new DirectionalLight(new Vector3f(1, 0, 0), 0.4f, new Vector3f(-1, 1, -1));
-        this.pointLight = new PointLight(new Vector3f(0, 1, 0), 0.4f, new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 0.0f);
+
+        int lightFieldWidth = 5;
+        int lightFieldDepth = 5;
+
+        float lightFieldStartX = 0;
+        float lightFieldStartY = 0;
+        float lightFieldStepX = 7;
+        float lightFieldStepY = 7;
+
+        pointLightList = new PointLight[lightFieldWidth * lightFieldDepth];
+
+        for(int i = 0; i < lightFieldWidth; i++)
+        {
+            for(int j = 0; j < lightFieldDepth; j++)
+            {
+                pointLightList[i * lightFieldWidth + j] = new PointLight(new BaseLight(new Vector3f(0,1,0), 0.4f),
+                        new Attenuation(0,0,1),
+                        new Vector3f(lightFieldStartX + lightFieldStepX * i,0,lightFieldStartY + lightFieldStepY * j), 0.0f);
+            }
+        }
+
+        pointLight = pointLightList[0];
+
+        //this.pointLight = new PointLight(new Vector3f(0, 1, 0), 0.4f, new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 0.0f);
         this.spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1, 1), 0.4f), new Attenuation(0, 0, 0.1f), new Vector3f(0, 0, 0), 100f), new Vector3f(1, 0, 0), 0.7f);
     }
 
