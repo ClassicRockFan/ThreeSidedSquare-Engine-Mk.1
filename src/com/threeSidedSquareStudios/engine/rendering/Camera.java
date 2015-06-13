@@ -153,7 +153,7 @@ public class Camera {
 
     public Matrix4f getProjectionMatrix() {
         Matrix4f cameraRotation = new Matrix4f().initRotation(getForward(), getUp());
-        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-getPos().getX(), getPos().getY(), -getPos().getZ());
+        Matrix4f cameraTranslation = new Matrix4f().initTranslation(-getPos().getX(), -getPos().getY(), -getPos().getZ());
 
         return projectionMatrix.mul(cameraRotation.mul(cameraTranslation));
     }

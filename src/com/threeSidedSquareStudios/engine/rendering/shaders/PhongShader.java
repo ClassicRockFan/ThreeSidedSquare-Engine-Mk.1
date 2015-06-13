@@ -37,7 +37,7 @@ public class PhongShader extends Shader{
 
         addUniform("transform");
         addUniform("transformProjected");
-        addUniform("eyePos");
+
         addUniform("baseColor");
         addUniform("ambientLight");
         addUniform("directionalLight.base.color");
@@ -45,6 +45,7 @@ public class PhongShader extends Shader{
         addUniform("directionalLight.direction");
         addUniform("specularIntensity");
         addUniform("specularPower");
+        addUniform("eyePos");
 
         for(int i = 0; i < MAX_POINT_LIGHTS; i++) {
             addUniform("pointLights[" + i + "].base.color");

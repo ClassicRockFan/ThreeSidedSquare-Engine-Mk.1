@@ -49,7 +49,7 @@ public class TestGame extends Game{
 
         GameObject test = new GameObject();
         test.getTransform().setPosition(new Vector3f(0, -1, 0));
-        test.addComponent(new MeshRender(new Material("bricks.jpg", new Vector3f(1, 1, 1), 1, 8), new Mesh(vertices, indices, true)));
+        test.addComponent(new MeshRender(new Material("default.png", new Vector3f(1, 1, 1), 1, 8), new Mesh(vertices, indices, true)));
 
         GameObject cameraObject = new GameObject();
 

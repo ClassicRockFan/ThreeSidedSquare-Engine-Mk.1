@@ -19,7 +19,7 @@ public class CoreEngine {
     public CoreEngine(int width, int heght, Game game, double frameCap) {
         this.game = game;
         this.frameTime = 1 / frameCap;
-        this.renderingEngine = new RenderingEngine(this);
+        this.renderingEngine = new RenderingEngine(this, false);
         this.width = width;
         this.height = heght;
     }

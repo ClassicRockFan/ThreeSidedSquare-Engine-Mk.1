@@ -140,6 +140,10 @@ public class Shader {
         glUseProgram(program);
     }
 
+    public void setAttribLocation(String attribName, int location){
+        glBindAttribLocation(program, location, attribName);
+    }
+
     public void setUniformi(String uniformName, int value){
         glUniform1i(uniforms.get(uniformName), value);
     }

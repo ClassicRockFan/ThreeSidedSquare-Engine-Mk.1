@@ -2,9 +2,14 @@ package com.threeSidedSquareStudios.engine.rendering;
 
 
 import com.threeSidedSquareStudios.engine.core.CoreEngine;
+import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.object.GameObject;
-import com.threeSidedSquareStudios.engine.rendering.shaders.BasicShader;
+import com.threeSidedSquareStudios.engine.rendering.light.*;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
+import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardAmbient;
+import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardDirectional;
+import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardPoint;
+import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardSpot;
 
 import java.util.ArrayList;
 
@@ -15,9 +20,16 @@ public class RenderingEngine {
 
     private CoreEngine engine;
     private Camera mainCamera;
+    private Vector3f ambientLight;
+    private DirectionalLight directionalLight;
+    private DirectionalLight directionalLight2;
+    private PointLight pointLight;
+    private SpotLight spotLight;
 
-    public RenderingEngine(CoreEngine engine) {
+    public RenderingEngine(CoreEngine engine, boolean initGraphics) {
         this.engine = engine;
+        if(initGraphics)
+            finalizeSetup();
     }
 
     public void input(float delta){
@@ -25,14 +37,48 @@ public class RenderingEngine {
     }
 
     public void render(ArrayList<GameObject> objects){
-        Window.bindAsRenderTarget();
         clearScreen();
 
-        Shader shader = BasicShader.getInstance();
-        shader.setRenderingEngine(this);
+        Shader ambient = ForwardAmbient.getInstance();
+        Shader directional = ForwardDirectional.getInstance();
+        Shader point = ForwardPoint.getInstance();
+        Shader spot = ForwardSpot.getInstance();
+        ambient.setRenderingEngine(this);
+        directional.setRenderingEngine(this);
+        point.setRenderingEngine(this);
+        spot.setRenderingEngine(this);
 
         for(GameObject object : objects)
-            object.render(shader);
+            object.render(ambient);
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE);
+        glDepthMask(false);
+        glDepthFunc(GL_EQUAL);
+
+        for(GameObject object : objects)
+            object.render(directional);
+
+        DirectionalLight temp = directionalLight;
+        directionalLight = directionalLight2;
+        directionalLight2 = temp;
+
+        for(GameObject object : objects)
+            object.render(directional);
+
+        temp = directionalLight;
+        directionalLight = directionalLight2;
+        directionalLight2 = temp;
+
+        for(GameObject object : objects)
+            object.render(point);
+
+        for(GameObject object : objects)
+            object.render(spot);
+
+        glDepthFunc(GL_LESS);
+        glDepthMask(true);
+        glDisable(GL_BLEND);
     }
 
     public void finalizeSetup() {
@@ -47,7 +93,12 @@ public class RenderingEngine {
 
         glEnable(GL_TEXTURE_2D);
 
-        mainCamera = new Camera((float)Math.toRadians(70f), 0.1f, 1000f);
+        this.mainCamera = new Camera((float)Math.toRadians(70f), 0.1f, 1000f);
+        this.ambientLight = new Vector3f(0.2f, 0.2f, 0.2f);
+        this.directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1));
+        this.directionalLight2 = new DirectionalLight(new Vector3f(1, 0, 0), 0.4f, new Vector3f(-1, 1, -1));
+        this.pointLight = new PointLight(new Vector3f(0, 1, 0), 0.4f, new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 0.0f);
+        this.spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1, 1), 0.4f), new Attenuation(0, 0, 0.1f), new Vector3f(0, 0, 0), 100f), new Vector3f(1, 0, 0), 0.7f);
     }
 
 
@@ -55,8 +106,7 @@ public class RenderingEngine {
         return engine;
     }
 
-    private void clearScreen()
-    {
+    private void clearScreen() {
         //TODO: Stencil Buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
@@ -81,5 +131,37 @@ public class RenderingEngine {
 
     public void setMainCamera(Camera mainCamera) {
         this.mainCamera = mainCamera;
+    }
+
+    public Vector3f getAmbientLight() {
+        return ambientLight;
+    }
+
+    public void setAmbientLight(Vector3f ambientLight) {
+        this.ambientLight = ambientLight;
+    }
+
+    public DirectionalLight getDirectionalLight() {
+        return directionalLight;
+    }
+
+    public void setDirectionalLight(DirectionalLight directionalLight) {
+        this.directionalLight = directionalLight;
+    }
+
+    public PointLight getPointLight() {
+        return pointLight;
+    }
+
+    public void setPointLight(PointLight pointLight) {
+        this.pointLight = pointLight;
+    }
+
+    public SpotLight getSpotLight() {
+        return spotLight;
+    }
+
+    public void setSpotLight(SpotLight spotLight) {
+        this.spotLight = spotLight;
     }
 }
