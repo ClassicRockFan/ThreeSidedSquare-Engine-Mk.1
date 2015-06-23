@@ -9,24 +9,18 @@ public class PointLight extends BaseLight{
     private Attenuation attenuation;
     private float range;
 
-    public PointLight(float intensity, Vector3f color, Attenuation attenuation, float range) {
-        super(intensity, color);
+    public PointLight(Vector3f color, float intensity, Attenuation attenuation) {
+        super(color, intensity);
         this.attenuation = attenuation;
 
-        if(Float.compare(range, 0.0f) <= 0) {
-            float a = attenuation.getExponent();
-            float b = attenuation.getLinear();
-            float c = attenuation.getConstant() - COLOR_DEPTH * getIntensity() * getColor().maxVal();
+        float a = attenuation.getExponent();
+        float b = attenuation.getLinear();
+        float c = attenuation.getConstant() - COLOR_DEPTH * intensity * color.maxVal();
 
-            this.range = (float) ((-b + Math.sqrt(b * b - 4 * a * c)) / 2 * a);
-        }else
-            this.range = range;
+        this.range = (float) ((-b + Math.sqrt((b * b) - (4 * a * c))) / (2 * a));
+
 
         setShader(ForwardPoint.getInstance());
-    }
-
-    public static int getCOLOR_DEPTH() {
-        return COLOR_DEPTH;
     }
 
     public Attenuation getAttenuation() {

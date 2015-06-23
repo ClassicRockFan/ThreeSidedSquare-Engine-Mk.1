@@ -83,35 +83,6 @@ public class RenderingEngine {
 
         //Shader Stuff
         ForwardAmbient.getInstance().setRenderingEngine(this);
-
-        //Lights
-//        this.directionalLight = new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1));
-//        this.directionalLight2 = new DirectionalLight(new Vector3f(1, 0, 0), 0.4f, new Vector3f(-1, 1, -1));
-//
-//        int lightFieldWidth = 5;
-//        int lightFieldDepth = 5;
-//
-//        float lightFieldStartX = 0;
-//        float lightFieldStartY = 0;
-//        float lightFieldStepX = 7;
-//        float lightFieldStepY = 7;
-//
-//        pointLightList = new PointLight[lightFieldWidth * lightFieldDepth];
-//
-//        for(int i = 0; i < lightFieldWidth; i++)
-//        {
-//            for(int j = 0; j < lightFieldDepth; j++)
-//            {
-//                pointLightList[i * lightFieldWidth + j] = new PointLight(new BaseLight(new Vector3f(0,1,0), 0.4f),
-//                        new Attenuation(0,0,1),
-//                        new Vector3f(lightFieldStartX + lightFieldStepX * i,0,lightFieldStartY + lightFieldStepY * j), 0.0f);
-//            }
-//        }
-
-        //pointLight = pointLightList[0];
-
-        //this.pointLight = new PointLight(new Vector3f(0, 1, 0), 0.4f, new Attenuation(0, 0, 1), new Vector3f(5, 0, 5), 0.0f);
-        //this.spotLight = new SpotLight(new PointLight(new BaseLight(new Vector3f(0, 1, 1), 0.4f), new Attenuation(0, 0, 0.1f), new Vector3f(0, 0, 0), 100f), new Vector3f(1, 0, 0), 0.7f);
     }
 
 

@@ -55,7 +55,7 @@ public class TestGame extends Game{
 
         GameObject cameraObject = new GameObject();
 
-        DirectionalLight testLight = new DirectionalLight(0.2f, new Vector3f(1, 1, 1), new Vector3f(1, 1, 1));
+        DirectionalLight testLight = new DirectionalLight(new Vector3f(1, 1, 1), 0.2f,new Vector3f(1, 1, 1));
         GameObject directionalLightObject = new GameObject();
         directionalLightObject.addComponent(testLight);
 
@@ -70,8 +70,8 @@ public class TestGame extends Game{
 
         for(int i = 0; i < lightFieldWidth; i++) {
             for(int j = 0; j < lightFieldDepth; j++) {
-                PointLight light = new PointLight(0.4f, new Vector3f(0,1,0),
-                        new Attenuation(0,0,1), 0.0f);
+                PointLight light = new PointLight(new Vector3f(0,1,0), 0.4f,
+                        new Attenuation(0,0,1));
 
                 GameObject lightObject = new GameObject();
                 lightObject.getTransform().setPosition(new Vector3f(lightFieldStartX + lightFieldStepX * i,0,lightFieldStartY + lightFieldStepY * j));
@@ -89,10 +89,10 @@ public class TestGame extends Game{
 
         //addLight(testLight);
 
-        addLight(new DirectionalLight(0.4f, new Vector3f(0, 0, 1), new Vector3f(1, 1, 1)));
-        addLight(new DirectionalLight( 0.4f, new Vector3f(1, 0, 0), new Vector3f(-1, 1, -1)));
-        addLight(new SpotLight(0.4f, new Vector3f(0, 1, 1), new Attenuation(0, 0, 0.1f), 100, new Vector3f(1, 0, 0), 0.7f));
-
+        addLight(new DirectionalLight(new Vector3f(0, 0, 1), 0.4f, new Vector3f(1, 1, 1)));
+        //addLight(new DirectionalLight(new Vector3f(1, 0, 0), 0.4f, new Vector3f(-1, 1, -1)));
+        GameObject eh = addLight(new SpotLight(new Vector3f(0, 1, 1), 0.4f, new Attenuation(0, 0, 0.1f), new Vector3f(1, 0, 0), 0.7f));
+        eh.getTransform().setPosition(5, 0, 5);
         //mesh = new Mesh("cube2.obj");
     }
 

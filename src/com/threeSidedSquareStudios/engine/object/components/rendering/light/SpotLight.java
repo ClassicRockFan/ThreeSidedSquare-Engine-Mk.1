@@ -8,8 +8,8 @@ public class SpotLight extends PointLight{
     private Vector3f direction;
     private float cutoff;
 
-    public SpotLight(float intensity, Vector3f color, Attenuation attenuation, float range, Vector3f direction, float cutoff) {
-        super(intensity, color, attenuation, range);
+    public SpotLight(Vector3f color, float intensity, Attenuation attenuation, Vector3f direction, float cutoff) {
+        super(color, intensity, attenuation);
         this.direction = direction;
         this.cutoff = cutoff;
         setShader(ForwardSpot.getInstance());

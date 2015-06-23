@@ -1,15 +1,14 @@
 package com.threeSidedSquareStudios.engine.object.components.rendering.light;
 
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
-import com.threeSidedSquareStudios.engine.rendering.light.*;
 import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardDirectional;
 
 public class DirectionalLight extends BaseLight{
 
     private Vector3f direction;
 
-    public DirectionalLight(float intensity, Vector3f color, Vector3f direction) {
-        super(intensity, color);
+    public DirectionalLight(Vector3f color, float intensity, Vector3f direction) {
+        super(color, intensity);
         this.direction = direction;
         setShader(ForwardDirectional.getInstance());
     }

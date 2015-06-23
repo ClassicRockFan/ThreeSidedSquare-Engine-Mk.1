@@ -10,7 +10,7 @@ public class BaseLight extends GameComponent{
     private Vector3f color;
     private Shader shader;
 
-    public BaseLight(float intensity, Vector3f color) {
+    public BaseLight(Vector3f color, float intensity) {
         this.intensity = intensity;
         this.color = color;
     }
