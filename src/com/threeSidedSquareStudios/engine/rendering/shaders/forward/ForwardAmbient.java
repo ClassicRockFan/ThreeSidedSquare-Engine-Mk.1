@@ -2,6 +2,7 @@ package com.threeSidedSquareStudios.engine.rendering.shaders.forward;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 

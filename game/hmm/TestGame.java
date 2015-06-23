@@ -8,7 +8,9 @@ import com.threeSidedSquareStudios.engine.core.math.Vector2f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.object.GameObject;
 import com.threeSidedSquareStudios.engine.object.components.rendering.MeshRender;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
 import com.threeSidedSquareStudios.engine.rendering.*;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.Attenuation;
 
 public class TestGame extends Game{
 
@@ -53,10 +55,44 @@ public class TestGame extends Game{
 
         GameObject cameraObject = new GameObject();
 
+        DirectionalLight testLight = new DirectionalLight(0.2f, new Vector3f(1, 1, 1), new Vector3f(1, 1, 1));
+        GameObject directionalLightObject = new GameObject();
+        directionalLightObject.addComponent(testLight);
+
+        int lightFieldWidth = 5;
+        int lightFieldDepth = 5;
+
+        float lightFieldStartX = 0;
+        float lightFieldStartY = 0;
+        float lightFieldStepX = 7;
+        float lightFieldStepY = 7;
+
+
+        for(int i = 0; i < lightFieldWidth; i++) {
+            for(int j = 0; j < lightFieldDepth; j++) {
+                PointLight light = new PointLight(0.4f, new Vector3f(0,1,0),
+                        new Attenuation(0,0,1), 0.0f);
+
+                GameObject lightObject = new GameObject();
+                lightObject.getTransform().setPosition(new Vector3f(lightFieldStartX + lightFieldStepX * i,0,lightFieldStartY + lightFieldStepY * j));
+                lightObject.addComponent(light);
+
+
+                engine.getRenderingEngine().addLight(light);
+                addObject(lightObject);
+            }
+        }
 
 
         addObject(cameraObject);
         addObject(test);
+
+        //addLight(testLight);
+
+        addLight(new DirectionalLight(0.4f, new Vector3f(0, 0, 1), new Vector3f(1, 1, 1)));
+        addLight(new DirectionalLight( 0.4f, new Vector3f(1, 0, 0), new Vector3f(-1, 1, -1)));
+        addLight(new SpotLight(0.4f, new Vector3f(0, 1, 1), new Attenuation(0, 0, 0.1f), 100, new Vector3f(1, 0, 0), 0.7f));
+
         //mesh = new Mesh("cube2.obj");
     }
 

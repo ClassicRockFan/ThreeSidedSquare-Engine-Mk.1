@@ -1,6 +1,7 @@
 package com.threeSidedSquareStudios.engine.core;
 
 import com.threeSidedSquareStudios.engine.object.GameObject;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,11 @@ public abstract class Game {
     public GameObject addObject(GameObject object){
         loadedObjects.add(object);
         return object;
+    }
+
+    public GameObject addLight(BaseLight base){
+        getEngine().getRenderingEngine().addLight(base);
+        return addObject(new GameObject().addComponent(base));
     }
 
     public GameObject removeObject(GameObject object){

@@ -3,6 +3,7 @@ package com.threeSidedSquareStudios.engine.rendering.shaders.forward;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
@@ -57,7 +58,7 @@ public class ForwardPoint extends Shader{
         setUniformf("specularIntensity", material.getSpecularIntesity());
         setUniform("eyePos", getRenderingEngine().getMainCamera().getPos());
 
-        setUniformPointLight("pointLight", getRenderingEngine().getPointLight());
+        setUniformPointLight("pointLight", (PointLight) getRenderingEngine().getActiveLight());
     }
 
 }

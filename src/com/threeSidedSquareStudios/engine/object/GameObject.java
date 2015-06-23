@@ -3,6 +3,7 @@ package com.threeSidedSquareStudios.engine.object;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.object.components.GameComponent;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
 import java.util.ArrayList;

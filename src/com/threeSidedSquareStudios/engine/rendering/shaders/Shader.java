@@ -7,11 +7,7 @@ import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.RenderingEngine;
-import com.threeSidedSquareStudios.engine.rendering.light.BaseLight;
-import com.threeSidedSquareStudios.engine.rendering.light.DirectionalLight;
-import com.threeSidedSquareStudios.engine.rendering.light.PointLight;
-import com.threeSidedSquareStudios.engine.rendering.light.SpotLight;
-
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -166,13 +162,13 @@ public class Shader {
     }
 
     public void setUniformDirectionalLight(String uniformName, DirectionalLight light){
-        setUniformBaseLight(uniformName + ".base", light.getBase());
+        setUniformBaseLight(uniformName + ".base", light);
         setUniform(uniformName + ".direction", light.getDirection());
     }
 
     public void setUniformPointLight(String uniformName, PointLight light){
-        setUniformBaseLight(uniformName + ".base", light.getBase());
-        setUniform(uniformName + ".position", light.getPosition());
+        setUniformBaseLight(uniformName + ".base", light);
+        setUniform(uniformName + ".position", light.getTransform().getPosition());
         setUniformf(uniformName + ".range", light.getRange());
         setUniformf(uniformName + ".attenuation.constant", light.getAttenuation().getConstant());
         setUniformf(uniformName + ".attenuation.linear", light.getAttenuation().getLinear());
@@ -180,7 +176,7 @@ public class Shader {
     }
 
     public void setUniformSpotLight(String uniformName, SpotLight light){
-        setUniformPointLight(uniformName + ".pointLight", light.getPointLight());
+        setUniformPointLight(uniformName + ".pointLight", light);
         setUniform(uniformName + ".direction", light.getDirection());
         setUniformf(uniformName + ".cutoff", light.getCutoff());
     }

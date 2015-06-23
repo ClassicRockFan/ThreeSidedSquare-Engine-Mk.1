@@ -3,6 +3,7 @@ package com.threeSidedSquareStudios.engine.object.components;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.object.GameObject;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
 public abstract class GameComponent {

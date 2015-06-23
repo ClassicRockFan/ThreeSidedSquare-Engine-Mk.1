@@ -1,4 +1,4 @@
-package com.threeSidedSquareStudios.engine.rendering.light;
+package com.threeSidedSquareStudios.engine.object.components.rendering.light;
 
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 
