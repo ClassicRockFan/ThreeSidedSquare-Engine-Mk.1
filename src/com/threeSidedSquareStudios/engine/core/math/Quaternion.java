@@ -30,7 +30,6 @@ public class Quaternion {
         this.y = axis.getY() * sinHalfAngle;
         this.z = axis.getZ() * sinHalfAngle;
         this.w = cosHalfAngle;
-
     }
 
     //From Ken Shoemake's "Quaternion Calculus and Fast Animation" article
@@ -168,6 +167,16 @@ public class Quaternion {
 
         return this.mul(srcFactor).add(correctedDest.mul(destFactor));
     }
+
+    public void print(String header) {
+        System.out.println(header + ": " + toString());
+    }
+
+    @Override
+    public String toString() {
+        return ("(" + getX() + ", " + getY() + ", " + getZ() + ", " + getW() + ")");
+    }
+
 
     //Calculate Directions
     public Vector3f getForward() {

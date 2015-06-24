@@ -5,12 +5,9 @@ import com.threeSidedSquareStudios.engine.core.CoreEngine;
 import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.object.GameObject;
+import com.threeSidedSquareStudios.engine.object.components.rendering.Camera;
 import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
-import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardAmbient;
-import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardDirectional;
-import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardPoint;
-import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardSpot;
 
 import java.util.ArrayList;
 
@@ -35,10 +32,6 @@ public class RenderingEngine {
         this.engine = engine;
         if(initGraphics)
             finalizeSetup();
-    }
-
-    public void input(float delta){
-        mainCamera.input(delta);
     }
 
     public void render(ArrayList<GameObject> objects){
@@ -77,7 +70,7 @@ public class RenderingEngine {
         glEnable(GL_TEXTURE_2D);
 
         //"Permanent" initialization
-        this.mainCamera = new Camera((float)Math.toRadians(70f), 0.1f, 1000f);
+        //this.mainCamera = new Camera((float)Math.toRadians(70f), 0.1f, 1000f);
         this.ambientLight = new Vector3f(0.1f, 0.1f, 0.1f);
         this.lights = new ArrayList<>();
 

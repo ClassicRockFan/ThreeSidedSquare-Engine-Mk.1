@@ -86,7 +86,6 @@ public class CoreEngine {
                 float deltaTime = (float) frameTime;
 
                 game.input(deltaTime);
-                renderingEngine.input(deltaTime);
                 game.update(deltaTime);
 
                 Input.update();

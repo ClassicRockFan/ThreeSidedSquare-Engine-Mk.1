@@ -92,7 +92,7 @@ public class Vector3f {
         return new Vector3f(x_, y_, z_);
     }
 
-    public Vector3f rotate(float angle, Vector3f axis)
+    public Vector3f rotate(Vector3f axis, float angle)
     {
         float sinHalfAngle = (float)Math.sin(Math.toRadians(angle / 2));
         float cosHalfAngle = (float)Math.cos(Math.toRadians(angle / 2));
@@ -107,16 +107,11 @@ public class Vector3f {
 
         Quaternion w = rotation.mul(this).mul(conjugate);
 
-        x = w.getX();
-        y = w.getY();
-        z = w.getZ();
-
-        return this;
+        return new Vector3f(w.getX(), w.getY(), w.getZ());
     }
 
     public Vector3f rotate(Quaternion rotation) {
-
-        Quaternion w = rotation.mul(this).mul(rotation.conjugate());
+        Quaternion w = rotation.conjugate().mul(this).mul(rotation);
 
         return new Vector3f(w.getX(), w.getY(), w.getZ());
     }
@@ -125,12 +120,14 @@ public class Vector3f {
         return this.sub(normal.mul((this.dot(normal) * 2)));
     }
 
-    public void printVector(String header) {
-        System.out.println(header + ": (" + getX() + ", " + getY() + ", " + getZ() + ")");
+    public Vector3f print(String header) {
+        System.out.println(header + ": " + toString());
+        return this;
     }
 
-    public String toString(String header) {
-        return (header + ": (" + getX() + ", " + getY() + ", " + getZ() + ")");
+    @Override
+    public String toString() {
+        return ("(" + getX() + ", " + getY() + ", " + getZ() + ")");
     }
 
     public Vector3f sqrt() {

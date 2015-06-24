@@ -3,7 +3,7 @@ package com.threeSidedSquareStudios.engine.core;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
 import com.threeSidedSquareStudios.engine.core.math.Quaternion;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
-import com.threeSidedSquareStudios.engine.rendering.Camera;
+import com.threeSidedSquareStudios.engine.object.components.rendering.Camera;
 
 public class Transform {
 
@@ -13,7 +13,6 @@ public class Transform {
     private Vector3f scale;
     private Quaternion rotation;
 
-    private Vector3f rotationVec;
 
     private Transform parent;
     private Matrix4f parentMatrix;
@@ -26,21 +25,9 @@ public class Transform {
         this.position = new Vector3f(0,0,0);
         this.scale = new Vector3f(1,1,1);
         this.rotation = new Quaternion(0,0,0,1);
-        this.rotationVec = new Vector3f(0, 0, 0);
         this.parent = null;
         this.parentMatrix = new Matrix4f().initIdentity();
     }
-
-//    public Matrix4f getTransformation()
-//    {
-//        Matrix4f translationMatrix = new Matrix4f().initTranslation(position.getX(), position.getY(), position.getZ());
-//        //Matrix4f rotationMatrix = new Matrix4f().initRotation(rotationVec.getX(), rotationVec.getY(), rotationVec.getZ());
-//        Matrix4f rotationMatrix = rotation.toRotationMatrix();
-//
-//        Matrix4f scaleMatrix = new Matrix4f().initScale(scale.getX(), scale.getY(), scale.getZ());
-//
-//        return translationMatrix.mul(rotationMatrix.mul(scaleMatrix));
-//    }
 
     public void rotate(Vector3f axis, float angle) {
         rotation = new Quaternion(axis, angle).mul(rotation).normalized();
@@ -114,12 +101,9 @@ public class Transform {
     }
 
     public Vector3f getPosition() {
-
         return position;
     }
-
     public void setPosition(float x, float y, float z){setPosition(new Vector3f(x, y, z));}
-
     public void setPosition(Vector3f position) {
         this.position = position;
     }
@@ -127,28 +111,17 @@ public class Transform {
     public Vector3f getScale() {
         return scale;
     }
-
-    public void setScale(Vector3f scale) {
-        this.scale = scale;
-    }
     public void setScale(float scale){
         setScale(new Vector3f(scale, scale, scale));
+    }
+    public void setScale(Vector3f scale) {
+        this.scale = scale;
     }
 
     public Quaternion getRotation() {
         return rotation;
     }
-
     public void setRotation(Quaternion rotation) {
         this.rotation = rotation;
     }
-
-    public Vector3f getRotationVec() {
-        return rotationVec;
-    }
-
-    public void setRotationVec(Vector3f rotationVec) {
-        this.rotationVec = rotationVec;
-    }
-
 }
