@@ -3,7 +3,7 @@ package com.threeSidedSquareStudios.engine.object.components.rendering.light;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardSpot;
 
-public class SpotLight extends PointLight{
+public class SpotLight extends PointLight {
 
     private float cutoff;
 
@@ -14,7 +14,7 @@ public class SpotLight extends PointLight{
     }
 
     public Vector3f getDirection() {
-        return getTransform().getRotation().getForward();
+        return getTransform().getTransformedRot().getForward();
     }
 
 

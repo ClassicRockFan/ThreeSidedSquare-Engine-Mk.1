@@ -12,7 +12,7 @@ public class Vertex {
     private Vector3f normal;
 
     public Vertex(Vector3f position) {
-        this(position, new Vector2f(0,0));
+        this(position, new Vector2f(0, 0));
     }
 
     public Vertex(Vector3f position, Vector2f textCoord) {

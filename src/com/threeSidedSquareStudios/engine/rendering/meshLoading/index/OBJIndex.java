@@ -28,10 +28,12 @@ public class OBJIndex {
         return result;
     }
 
-    public void setVertexIndex(int index){this.vertexIndex = index;}
-
     public int getVertexIndex() {
         return vertexIndex;
+    }
+
+    public void setVertexIndex(int index) {
+        this.vertexIndex = index;
     }
 
     public int getTextCoordIndex() {

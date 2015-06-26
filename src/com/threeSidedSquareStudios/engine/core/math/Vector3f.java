@@ -92,10 +92,9 @@ public class Vector3f {
         return new Vector3f(x_, y_, z_);
     }
 
-    public Vector3f rotate(Vector3f axis, float angle)
-    {
-        float sinHalfAngle = (float)Math.sin(Math.toRadians(angle / 2));
-        float cosHalfAngle = (float)Math.cos(Math.toRadians(angle / 2));
+    public Vector3f rotate(Vector3f axis, float angle) {
+        float sinHalfAngle = (float) Math.sin(Math.toRadians(angle / 2));
+        float cosHalfAngle = (float) Math.cos(Math.toRadians(angle / 2));
 
         float rX = axis.getX() * sinHalfAngle;
         float rY = axis.getY() * sinHalfAngle;

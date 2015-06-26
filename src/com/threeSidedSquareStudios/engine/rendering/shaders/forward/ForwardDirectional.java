@@ -2,18 +2,13 @@ package com.threeSidedSquareStudios.engine.rendering.shaders.forward;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
-import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.object.components.rendering.light.DirectionalLight;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
-public class ForwardDirectional extends Shader{
+public class ForwardDirectional extends Shader {
 
     private static final ForwardDirectional instance = new ForwardDirectional();
-
-    public static ForwardDirectional getInstance() {
-        return instance;
-    }
 
     private ForwardDirectional() {
         super();
@@ -39,6 +34,10 @@ public class ForwardDirectional extends Shader{
         addUniform("directionalLight.direction");
     }
 
+    public static ForwardDirectional getInstance() {
+        return instance;
+    }
+
     @Override
     public void updateUniforms(Transform transform, Material material) {
         Matrix4f worldMatrix = transform.getTransformation();
@@ -53,7 +52,7 @@ public class ForwardDirectional extends Shader{
         setUniformDirectionalLight("directionalLight", (DirectionalLight) getRenderingEngine().getActiveLight());
         setUniformf("specularPower", material.getSpecularExponent());
         setUniformf("specularIntensity", material.getSpecularIntesity());
-        setUniform("eyePos", getRenderingEngine().getMainCamera().getTransform().getPosition());
+        setUniform("eyePos", getRenderingEngine().getMainCamera().getTransform().getTransformedPos());
     }
 
 }

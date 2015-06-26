@@ -3,7 +3,6 @@ package com.threeSidedSquareStudios.engine.object;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.object.components.GameComponent;
-import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
 import java.util.ArrayList;
@@ -20,36 +19,37 @@ public class GameObject {
         this.transform = new Transform();
     }
 
-    public GameObject addChild(GameObject object){
+    public GameObject addChild(GameObject object) {
         children.add(object);
         object.getTransform().setParent(getTransform());
         return this;
     }
 
-    public GameObject addComponent(GameComponent component){
+    public GameObject addComponent(GameComponent component) {
         components.add(component);
         component.setParent(this);
         return this;
     }
 
-    public void input(float delta){
-        for(GameObject child : children)
+    public void input(float delta) {
+        transform.update();
+        for (GameObject child : children)
             child.input(delta);
-        for(GameComponent component : components)
+        for (GameComponent component : components)
             component.input(delta);
     }
 
-    public void update(float delta){
-        for(GameObject child : children)
+    public void update(float delta) {
+        for (GameObject child : children)
             child.update(delta);
-        for(GameComponent component : components)
+        for (GameComponent component : components)
             component.update(delta);
     }
 
-    public void render(Shader shader){
-        for(GameObject child : children)
+    public void render(Shader shader) {
+        for (GameObject child : children)
             child.render(shader);
-        for(GameComponent component : components)
+        for (GameComponent component : components)
             component.render(shader);
     }
 

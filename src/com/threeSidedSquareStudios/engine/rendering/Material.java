@@ -9,7 +9,7 @@ public class Material {
     private float specularIntesity;
     private float specularExponent;
 
-    public Material(String path, Vector3f color){
+    public Material(String path, Vector3f color) {
         this(new Texture(path), color);
     }
 

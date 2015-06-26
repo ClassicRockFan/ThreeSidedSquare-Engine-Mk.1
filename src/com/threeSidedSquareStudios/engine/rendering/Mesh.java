@@ -17,21 +17,21 @@ public class Mesh {
     private int ibo;
     private int size;
 
-    public Mesh(String path){
+    public Mesh(String path) {
         initMeshData();
         loadMesh(path);
     }
 
-    public Mesh(Vertex[] vertices, int[] indices){
+    public Mesh(Vertex[] vertices, int[] indices) {
         this(vertices, indices, false);
     }
 
-    public Mesh(Vertex[] vertices, int[] indices, boolean calcNormals){
+    public Mesh(Vertex[] vertices, int[] indices, boolean calcNormals) {
         initMeshData();
         addVertices(vertices, indices, calcNormals);
     }
 
-    private void initMeshData(){
+    private void initMeshData() {
         this.vbo = glGenBuffers();
         this.ibo = glGenBuffers();
         this.size = 0;
@@ -42,7 +42,7 @@ public class Mesh {
     }
 
     private void addVertices(Vertex[] vertices, int[] indices, boolean calcNormals) {
-        if(calcNormals)
+        if (calcNormals)
             calcNormals(vertices, indices);
 
         size = indices.length;
@@ -74,8 +74,8 @@ public class Mesh {
         glDisableVertexAttribArray(2);
     }
 
-    private void calcNormals(Vertex[] vertices, int[] indices){
-        for(int i = 0; i < indices.length; i += 3){
+    private void calcNormals(Vertex[] vertices, int[] indices) {
+        for (int i = 0; i < indices.length; i += 3) {
             int i0 = indices[i];
             int i1 = indices[i + 1];
             int i2 = indices[i + 2];
@@ -90,11 +90,11 @@ public class Mesh {
             vertices[i2].setNormal(vertices[i2].getNormal().add(normal));
         }
 
-        for(int i = 0; i < vertices.length; i++)
+        for (int i = 0; i < vertices.length; i++)
             vertices[i].setNormal(vertices[i].getNormal().normalized());
     }
 
-    private void loadMesh(String fileName){
+    private void loadMesh(String fileName) {
         String[] splitArray = fileName.split("\\.");
         String ext = splitArray[splitArray.length - 1];
 

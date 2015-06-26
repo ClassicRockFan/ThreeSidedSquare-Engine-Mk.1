@@ -3,17 +3,13 @@ package com.threeSidedSquareStudios.engine.rendering.shaders.forward;
 
 import com.threeSidedSquareStudios.engine.core.Transform;
 import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
-import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.PointLight;
 import com.threeSidedSquareStudios.engine.rendering.Material;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
-public class ForwardPoint extends Shader{
+public class ForwardPoint extends Shader {
 
     private static final ForwardPoint instance = new ForwardPoint();
-
-    public static ForwardPoint getInstance() {
-        return instance;
-    }
 
     private ForwardPoint() {
         super();
@@ -43,6 +39,10 @@ public class ForwardPoint extends Shader{
         addUniform("pointLight.range");
     }
 
+    public static ForwardPoint getInstance() {
+        return instance;
+    }
+
     @Override
     public void updateUniforms(Transform transform, Material material) {
         Matrix4f worldMatrix = transform.getTransformation();
@@ -56,7 +56,7 @@ public class ForwardPoint extends Shader{
 
         setUniformf("specularPower", material.getSpecularExponent());
         setUniformf("specularIntensity", material.getSpecularIntesity());
-        setUniform("eyePos", getRenderingEngine().getMainCamera().getTransform().getPosition());
+        setUniform("eyePos", getRenderingEngine().getMainCamera().getTransform().getTransformedPos());
 
         setUniformPointLight("pointLight", (PointLight) getRenderingEngine().getActiveLight());
     }

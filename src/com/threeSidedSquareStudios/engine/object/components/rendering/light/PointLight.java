@@ -3,7 +3,7 @@ package com.threeSidedSquareStudios.engine.object.components.rendering.light;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardPoint;
 
-public class PointLight extends BaseLight{
+public class PointLight extends BaseLight {
     private static final int COLOR_DEPTH = 256;
 
     private Attenuation attenuation;

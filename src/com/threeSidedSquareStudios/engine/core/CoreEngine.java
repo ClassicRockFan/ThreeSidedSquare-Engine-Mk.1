@@ -24,13 +24,13 @@ public class CoreEngine {
         this.height = heght;
     }
 
-    public void createWindowInitGraphics(String title){
+    public void createWindowInitGraphics(String title) {
         Window.createWindow(width, height, title);
         renderingEngine.finalizeSetup();
     }
 
-    public boolean start(){
-        if(running)
+    public boolean start() {
+        if (running)
             return false;
         this.running = true;
 
@@ -39,8 +39,8 @@ public class CoreEngine {
         return true;
     }
 
-    public boolean stop(){
-        if(!running)
+    public boolean stop() {
+        if (!running)
             return false;
 
         this.running = false;

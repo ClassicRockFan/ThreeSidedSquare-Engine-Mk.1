@@ -33,12 +33,10 @@ public class Util {
     }
 
 
-    public static FloatBuffer createFlippedBuffer(Vertex[] vertices)
-    {
+    public static FloatBuffer createFlippedBuffer(Vertex[] vertices) {
         FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE);
 
-        for(int i = 0; i < vertices.length; i++)
-        {
+        for (int i = 0; i < vertices.length; i++) {
             buffer.put(vertices[i].getPosition().getX());
             buffer.put(vertices[i].getPosition().getY());
             buffer.put(vertices[i].getPosition().getZ());
@@ -68,7 +66,7 @@ public class Util {
         return buffer;
     }
 
-    public static ByteBuffer charToByteBuffer(char[] data){
+    public static ByteBuffer charToByteBuffer(char[] data) {
 
         return null;
     }

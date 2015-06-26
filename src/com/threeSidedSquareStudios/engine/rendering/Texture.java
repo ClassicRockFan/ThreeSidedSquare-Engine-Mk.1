@@ -13,33 +13,29 @@ public class Texture {
 
     private int id;
 
-    public Texture(String path){
+    public Texture(String path) {
         this.id = loadTexture(path);
     }
 
-    private static int loadTexture(String fileName)
-    {
-        try
-        {
+    private static int loadTexture(String fileName) {
+        try {
             BufferedImage image = ImageIO.read(new File("./res/textures/" + fileName));
             int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
 
             ByteBuffer buffer = Util.createByteBuffer(image.getHeight() * image.getWidth() * 4);
             boolean hasAlpha = image.getColorModel().hasAlpha();
 
-            for(int y = 0; y < image.getHeight(); y++)
-            {
-                for(int x = 0; x < image.getWidth(); x++)
-                {
+            for (int y = 0; y < image.getHeight(); y++) {
+                for (int x = 0; x < image.getWidth(); x++) {
                     int pixel = pixels[y * image.getWidth() + x];
 
-                    buffer.put((byte)((pixel >> 16) & 0xFF));
-                    buffer.put((byte)((pixel >> 8) & 0xFF));
-                    buffer.put((byte)((pixel) & 0xFF));
-                    if(hasAlpha)
-                        buffer.put((byte)((pixel >> 24) & 0xFF));
+                    buffer.put((byte) ((pixel >> 16) & 0xFF));
+                    buffer.put((byte) ((pixel >> 8) & 0xFF));
+                    buffer.put((byte) ((pixel) & 0xFF));
+                    if (hasAlpha)
+                        buffer.put((byte) ((pixel >> 24) & 0xFF));
                     else
-                        buffer.put((byte)(0xFF));
+                        buffer.put((byte) (0xFF));
                 }
             }
 
@@ -57,9 +53,7 @@ public class Texture {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.getWidth(), image.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
 
             return id;
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
@@ -67,7 +61,7 @@ public class Texture {
         return 0;
     }
 
-    public void bind(){
+    public void bind() {
         glBindTexture(GL_TEXTURE_2D, id);
     }
 

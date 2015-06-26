@@ -6,7 +6,10 @@ import com.threeSidedSquareStudios.engine.core.administrative.Logging;
 import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.object.GameObject;
 import com.threeSidedSquareStudios.engine.object.components.rendering.Camera;
-import com.threeSidedSquareStudios.engine.object.components.rendering.light.*;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.BaseLight;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.DirectionalLight;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.PointLight;
+import com.threeSidedSquareStudios.engine.object.components.rendering.light.SpotLight;
 import com.threeSidedSquareStudios.engine.rendering.shaders.forward.ForwardAmbient;
 
 import java.util.ArrayList;
@@ -30,14 +33,26 @@ public class RenderingEngine {
 
     public RenderingEngine(CoreEngine engine, boolean initGraphics) {
         this.engine = engine;
-        if(initGraphics)
+        if (initGraphics)
             finalizeSetup();
     }
 
-    public void render(ArrayList<GameObject> objects){
+    private static void unbindTexture() {
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+
+    public static void setClearColor(float r, float g, float b, float a) {
+        glClearColor(r, g, b, a);
+    }
+
+    public static String getOpenGLVersion() {
+        return glGetString(GL_VERSION);
+    }
+
+    public void render(ArrayList<GameObject> objects) {
         clearScreen();
 
-        for(GameObject object : objects)
+        for (GameObject object : objects)
             object.render(ForwardAmbient.getInstance());
 
         glEnable(GL_BLEND);
@@ -45,9 +60,9 @@ public class RenderingEngine {
         glDepthMask(false);
         glDepthFunc(GL_EQUAL);
 
-        for(BaseLight light : lights) {
+        for (BaseLight light : lights) {
             activeLight = light;
-            for(GameObject object : objects)
+            for (GameObject object : objects)
                 object.render(light.getShader());
         }
 
@@ -78,7 +93,6 @@ public class RenderingEngine {
         ForwardAmbient.getInstance().setRenderingEngine(this);
     }
 
-
     public CoreEngine getEngine() {
         return engine;
     }
@@ -86,20 +100,6 @@ public class RenderingEngine {
     private void clearScreen() {
         //TODO: Stencil Buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    }
-
-
-    private static void unbindTexture(){
-        glBindTexture(GL_TEXTURE_2D, 0);
-    }
-
-    public static void setClearColor(float r, float g, float b, float a){
-        glClearColor(r, g, b, a);
-    }
-
-    public static String getOpenGLVersion()
-    {
-        return glGetString(GL_VERSION);
     }
 
     public Camera getMainCamera() {
@@ -118,14 +118,14 @@ public class RenderingEngine {
         this.ambientLight = ambientLight;
     }
 
-    public BaseLight addLight(BaseLight light){
+    public BaseLight addLight(BaseLight light) {
         lights.add(light);
         light.getShader().setRenderingEngine(this);
-        Logging.printLog("Added light number " +  lights.size() + " to the renderingEngine");
+        Logging.printLog("Added light number " + lights.size() + " to the renderingEngine");
         return light;
     }
 
-    public void removeLight(BaseLight light){
+    public void removeLight(BaseLight light) {
         lights.remove(light);
     }
 

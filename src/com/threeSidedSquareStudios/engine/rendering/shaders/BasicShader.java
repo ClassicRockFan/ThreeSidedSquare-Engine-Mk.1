@@ -1,10 +1,6 @@
 package com.threeSidedSquareStudios.engine.rendering.shaders;
 
-import com.threeSidedSquareStudios.engine.core.Transform;
-import com.threeSidedSquareStudios.engine.core.math.Matrix4f;
-import com.threeSidedSquareStudios.engine.rendering.Material;
-
-public class BasicShader extends Shader{
+public class BasicShader extends Shader {
 
 //    private static final BasicShader instance = new BasicShader();
 //

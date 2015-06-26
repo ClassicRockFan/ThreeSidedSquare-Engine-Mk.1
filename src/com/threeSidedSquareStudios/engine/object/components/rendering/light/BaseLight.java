@@ -4,7 +4,7 @@ import com.threeSidedSquareStudios.engine.core.math.Vector3f;
 import com.threeSidedSquareStudios.engine.object.components.GameComponent;
 import com.threeSidedSquareStudios.engine.rendering.shaders.Shader;
 
-public class BaseLight extends GameComponent{
+public class BaseLight extends GameComponent {
 
     private float intensity;
     private Vector3f color;

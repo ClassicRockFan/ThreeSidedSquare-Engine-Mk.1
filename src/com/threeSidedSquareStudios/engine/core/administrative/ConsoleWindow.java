@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class ConsoleWindow{
+public class ConsoleWindow {
 
     private static JTextArea mainField;
     private static JTextField textField;
@@ -18,7 +18,7 @@ public class ConsoleWindow{
     private static boolean instantiated = false;
 
     public static void instantiate() {
-        if(!instantiated) {
+        if (!instantiated) {
 
             frame = new JFrame();
 
@@ -68,14 +68,14 @@ public class ConsoleWindow{
         }
     }
 
-    private static void setupCommands(){
+    private static void setupCommands() {
         commands = new String[]{
                 "help - displays all available commands",
                 "terminate - stops the game"
         };
 
         addConsoleText("POSSIBLE COMMANDS:");
-        for(int i = 0; i < commands.length; i++){
+        for (int i = 0; i < commands.length; i++) {
             addConsoleText(commands[i]);
         }
     }
@@ -104,8 +104,8 @@ public class ConsoleWindow{
 
     }
 
-    private static void pauseCaret(){
-        if(instantiated){
+    private static void pauseCaret() {
+        if (instantiated) {
             DefaultCaret caret = (DefaultCaret) mainField.getCaret();
             caret.setUpdatePolicy(DefaultCaret.UPDATE_WHEN_ON_EDT);
             mainField.setAutoscrolls(false);
@@ -113,8 +113,8 @@ public class ConsoleWindow{
         }
     }
 
-    private static void resumeCaret(){
-        if(instantiated){
+    private static void resumeCaret() {
+        if (instantiated) {
             DefaultCaret caret = (DefaultCaret) mainField.getCaret();
             caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
             mainField.setAutoscrolls(true);
@@ -123,12 +123,12 @@ public class ConsoleWindow{
     }
 
     public static void addConsoleText(String message) {
-        if(instantiated)
+        if (instantiated)
             mainField.append(message + "\n");
     }
 
     public static void addConsoleText(String message, int numWhiteSpaces, String message2) {
-        if(instantiated) {
+        if (instantiated) {
             String whiteSpace = "";
 
             for (int i = 0; i < numWhiteSpaces - 1; i++) {

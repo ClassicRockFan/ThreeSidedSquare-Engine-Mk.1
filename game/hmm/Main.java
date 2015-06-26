@@ -10,7 +10,7 @@ public class Main {
 
     public static final double FRAME_CAP = 60.0;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         CoreEngine engine = new CoreEngine(WIDTH, HEIGHT, new TestGame(), FRAME_CAP);
         engine.start();
     }

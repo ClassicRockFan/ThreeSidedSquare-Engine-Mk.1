@@ -15,7 +15,7 @@ public class Logging {
         printLog(message, LEVEL_INFO);
     }
 
-    public static void printError(String message){
+    public static void printError(String message) {
         printLog(message, LEVEL_ERROR);
     }
 
@@ -25,13 +25,13 @@ public class Logging {
         if (level == LEVEL_ERROR) {
             System.err.println(Time.getFormatTime() + " - [ERROR] - " + message);
             ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [ERROR] - " + message);
-        } else if (level == LEVEL_INFO){
+        } else if (level == LEVEL_INFO) {
             System.out.println(Time.getFormatTime() + " - [INFO] - " + message);
             ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [INFO] - " + message);
-        } else if(level==LEVEL_DEBUG){
+        } else if (level == LEVEL_DEBUG) {
             System.out.println(Time.getFormatTime() + " - [DEBUG] - " + message);
             ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [DEBUG] - " + message);
-        } else if (level == LEVEL_TRACE){
+        } else if (level == LEVEL_TRACE) {
             System.out.println(Time.getFormatTime() + " - [TRACE] - " + message);
             ConsoleWindow.addConsoleText(Time.getFormatTime() + " - [TRACE] - " + message);
         } else {
